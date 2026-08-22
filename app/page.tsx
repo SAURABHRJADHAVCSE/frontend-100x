@@ -25,14 +25,19 @@ export default function Home() {
               <CardTitle className="text-lg font-semibold tracking-tight">{phase.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="flex flex-col">
-                {phase.topics.map((t) => (
+              <ul className="flex flex-col divide-y divide-border/60">
+                {phase.topics.map((t, i) => (
                   <li key={t.slug}>
                     <Link
                       href={`/topics/${t.slug}`}
-                      className="block rounded-md px-2 py-1.5 -mx-2 text-sm text-foreground/90 transition-colors hover:bg-muted hover:text-foreground"
+                      className="group -mx-2 flex items-baseline gap-2.5 rounded-md px-2 py-2 transition-colors hover:bg-muted"
                     >
-                      {t.title}
+                      <span className="font-mono text-[11px] tabular-nums text-muted-foreground/70">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="text-[13.5px] leading-snug font-medium text-foreground/85 transition-colors group-hover:text-foreground">
+                        {t.title}
+                      </span>
                     </Link>
                   </li>
                 ))}
