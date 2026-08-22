@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frontend Mastery Roadmap 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #09090b;
+      --s1: #111115;
+      --s2: #18181c;
+      --s3: #1f1f25;
+      --bd: #27272e;
+      --bd2: #33333d;
+      --violet: #8b5cf6;
+      --violet-l: #a78bfa;
+      --cyan: #22d3ee;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --rose: #f43f5e;
+      --orange: #f97316;
+      --blue: #3b82f6;
+      --pink: #ec4899;
+      --purple: #a855f7;
+      --lime: #22c55e;
+      --slate: #94a3b8;
+      --t1: #f4f4f8;
+      --t2: #a1a1ab;
+      --t3: #60607a;
+      --fd: 'Space Grotesk', sans-serif;
+      --fb: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--t1);
+      font-family: var(--fb);
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a { color: var(--violet-l); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── HERO ── */
+    .hero {
+      background: radial-gradient(ellipse 90% 60% at 50% -5%, rgba(139,92,246,0.22) 0%, transparent 65%);
+      border-bottom: 1px solid var(--bd);
+      padding: 64px 24px 52px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.018'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--fd);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--violet-l);
+      background: rgba(139,92,246,0.12);
+      border: 1px solid rgba(139,92,246,0.28);
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-family: var(--fd);
+      font-size: clamp(32px, 6vw, 64px);
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+    .hero h1 .g {
+      background: linear-gradient(135deg, #a78bfa 0%, #22d3ee 55%, #10b981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-desc {
+      font-size: 15px;
+      color: var(--t2);
+      max-width: 500px;
+      margin: 0 auto 40px;
+    }
+
+    /* ── PROGRESS ── */
+    .prog-section { max-width: 580px; margin: 0 auto; }
+    .prog-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .stat-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--bd);
+      border-radius: 10px;
+      padding: 12px 16px;
+      text-align: center;
+    }
+    .stat-n {
+      font-family: var(--fd);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--t1);
+      display: block;
+      line-height: 1.1;
+    }
+    .stat-l { font-size: 11px; color: var(--t3); }
+    .prog-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .prog-pct { font-size: 13px; color: var(--t2); }
+    .prog-pct b { color: var(--t1); }
+    .level-badge {
+      font-family: var(--fd);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--violet-l);
+      background: rgba(139,92,246,0.15);
+      border: 1px solid rgba(139,92,246,0.3);
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+    .prog-track {
+      height: 8px;
+      background: var(--bd);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .prog-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #8b5cf6, #22d3ee 85%);
+      border-radius: 100px;
+      transition: width 0.5s cubic-bezier(.4,0,.2,1);
+      width: 0%;
+    }
+
+    /* ── PHASE NAV ── */
+    .phase-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 24px;
+    }
+    .ph-nav-btn {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 100px;
+      border: 1px solid var(--bd2);
+      background: transparent;
+      color: var(--t3);
+      cursor: pointer;
+      font-family: var(--fd);
+      transition: all 0.15s;
+      letter-spacing: 0.05em;
+    }
+    .ph-nav-btn:hover { color: var(--t1); border-color: var(--t3); }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 1120px; margin: 0 auto; padding: 52px 24px; }
+    .section-head {
+      font-family: var(--fd);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--t1);
+      margin-bottom: 6px;
+    }
+    .section-sub { font-size: 13px; color: var(--t3); margin-bottom: 24px; }
+
+    /* ── PHASES GRID ── */
+    .phases-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      gap: 16px;
+    }
+    @media (max-width: 500px) { .phases-grid { grid-template-columns: 1fr; } }
+
+    /* ── PHASE CARD ── */
+    .pc {
+      background: var(--s1);
+      border: 1px solid var(--bd);
+      border-radius: 16px;
+      overflow: hidden;
+      border-left: 3px solid var(--pc, var(--violet));
+      transition: border-color 0.2s;
+    }
+    .pc:hover { border-color: var(--bd2); border-left-color: var(--pc, var(--violet)); }
+    .pc.done { border-color: rgba(16,185,129,0.3); border-left-color: var(--pc, var(--violet)); }
+
+    .pc-head { padding: 18px 18px 14px; border-bottom: 1px solid var(--bd); }
+    .pc-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+    .pc-num {
+      font-family: var(--fd);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--pc, var(--violet));
+    }
+    .pc-dur {
+      font-size: 10px;
+      color: var(--t3);
+      background: var(--s2);
+      padding: 2px 8px;
+      border-radius: 100px;
+    }
+    .pc-title {
+      font-family: var(--fd);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--t1);
+      margin-bottom: 12px;
+    }
+    .pc-prog { display: flex; align-items: center; gap: 10px; }
+    .pc-prog-track { flex: 1; height: 3px; background: var(--bd); border-radius: 100px; overflow: hidden; }
+    .pc-prog-fill {
+      height: 100%;
+      background: var(--pc, var(--violet));
+      border-radius: 100px;
+      transition: width 0.4s cubic-bezier(.4,0,.2,1);
+    }
+    .pc-prog-lbl { font-size: 11px; color: var(--t3); min-width: 36px; text-align: right; }
+    .done-badge {
+      display: none;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #34d399;
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.25);
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+    .pc.done .done-badge { display: flex; }
+    .pc.done .pc-prog { display: none; }
+
+    /* ── CHECKLIST ITEMS ── */
+    .pc-items {}
+    .it { border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .it:last-child { border-bottom: none; }
+    .it-lbl {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      padding: 10px 18px;
+      cursor: pointer;
+      transition: background 0.12s;
+      user-select: none;
+    }
+    .it-lbl:hover { background: rgba(255,255,255,0.02); }
+
+    .it-inp { display: none; }
+    .cb {
+      width: 17px;
+      height: 17px;
+      border: 1.5px solid var(--bd2);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.18s;
+      background: transparent;
+    }
+    .it-inp:checked + .cb {
+      background: var(--pc, var(--violet));
+      border-color: var(--pc, var(--violet));
+      animation: cbpop 0.2s ease;
+    }
+    .cb-icon { display: none; }
+    .it-inp:checked + .cb .cb-icon { display: block; }
+
+    @keyframes cbpop {
+      0% { transform: scale(0.6); }
+      70% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .it-body { flex: 1; min-width: 0; }
+    .it-t {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--t1);
+      line-height: 1.4;
+      transition: color 0.18s;
+    }
+    .it-d { font-size: 11px; color: var(--t3); margin-top: 2px; line-height: 1.4; }
+    .it-inp:checked ~ .it-body .it-t {
+      color: var(--t3);
+      text-decoration: line-through;
+      text-decoration-color: var(--bd2);
+    }
+    .it-inp:checked ~ .it-body .it-d { color: var(--bd2); }
+
+    /* ── PHASE RESOURCES ── */
+    .pc-res {
+      padding: 10px 18px;
+      border-top: 1px solid var(--bd);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .res-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 100px;
+      border: 1px solid var(--bd2);
+      color: var(--t2);
+      background: var(--s2);
+      transition: all 0.15s;
+      cursor: pointer;
+      font-family: var(--fb);
+      text-decoration: none;
+    }
+    .res-btn:hover { color: var(--t1); border-color: var(--t2); text-decoration: none; }
+    .res-btn.free { color: #34d399; border-color: rgba(52,211,153,0.3); background: rgba(16,185,129,0.06); }
+    .res-btn.free:hover { background: rgba(16,185,129,0.12); }
+
+    /* ── RESOURCES HUB ── */
+    .res-hub { background: var(--s1); border-top: 1px solid var(--bd); padding: 60px 24px; }
+    .res-hub-inner { max-width: 1120px; margin: 0 auto; }
+    .res-hub-head { text-align: center; margin-bottom: 40px; }
+    .res-hub-head h2 { font-family: var(--fd); font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+    .res-hub-head p { color: var(--t2); font-size: 14px; }
+
+    .res-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .res-cat {
+      background: var(--s2);
+      border: 1px solid var(--bd);
+      border-radius: 14px;
+      padding: 18px 20px;
+    }
+    .res-cat-h {
+      font-family: var(--fd);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--t1);
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--bd);
+    }
+    .ri {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .ri:last-child { border-bottom: none; padding-bottom: 0; }
+    .ri-ico { font-size: 16px; color: var(--t3); flex-shrink: 0; margin-top: 1px; }
+    .ri-name { font-size: 13px; font-weight: 600; color: var(--t1); }
+    .ri-name a { color: inherit; text-decoration: none; }
+    .ri-name a:hover { color: var(--violet-l); }
+    .ri-desc { font-size: 11px; color: var(--t3); margin-top: 2px; }
+    .ri-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 1px 5px;
+      border-radius: 3px;
+      margin-left: 5px;
+      vertical-align: 1px;
+    }
+    .ri-tag.free { background: rgba(52,211,153,0.15); color: #34d399; }
+    .ri-tag.paid { background: rgba(245,158,11,0.15); color: #fbbf24; }
+    .ri-tag.yt   { background: rgba(244,63,94,0.15);  color: #fb7185; }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      padding: 28px 24px;
+      border-top: 1px solid var(--bd);
+      color: var(--t3);
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .reset-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--t3);
+      border: 1px solid var(--bd);
+      background: transparent;
+      border-radius: 8px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-family: var(--fb);
+      transition: all 0.15s;
+    }
+    .reset-btn:hover { color: #fb7185; border-color: rgba(244,63,94,0.4); background: rgba(244,63,94,0.06); }
+
+    /* ── XP TOAST ── */
+    .xp-toast {
+      position: fixed;
+      pointer-events: none;
+      font-family: var(--fd);
+      font-size: 12px;
+      font-weight: 700;
+      z-index: 9999;
+      animation: xpfloat 0.9s ease-out forwards;
+    }
+    @keyframes xpfloat {
+      0% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-32px); }
+    }
+    @keyframes conffall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(70px) rotate(540deg); opacity: 0; }
+    }
+    .confetti-p {
+      position: fixed;
+      width: 7px;
+      height: 7px;
+      pointer-events: none;
+      z-index: 9998;
+      animation: conffall 0.8s ease-out forwards;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--bd2); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-eyebrow">🚀 2026 Edition &middot; Top 1% Roadmap</div>
+  <h1>Go From <span class="g">Zero</span> to<br>Frontend <span class="g">Master</span></h1>
+  <p class="hero-desc">110 topics across 12 phases. Interactive progress tracker with persistent saves. Built on verified, industry-trusted resources.</p>
+
+  <div class="prog-section">
+    <div class="prog-stats">
+      <div class="stat-box">
+        <span class="stat-n" id="cnt-done">0</span>
+        <span class="stat-l">completed</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-n" id="cnt-tot">0</span>
+        <span class="stat-l">total topics</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-n" id="cnt-ph">0</span>
+        <span class="stat-l">phases done</span>
+      </div>
+    </div>
+    <div class="prog-head">
+      <span class="prog-pct"><b id="gpct">0%</b> complete</span>
+      <span class="level-badge" id="lvl-badge">Initiate 🌱</span>
+    </div>
+    <div class="prog-track">
+      <div class="prog-fill" id="gbar"></div>
+    </div>
+  </div>
+
+  <nav class="phase-nav" id="phase-nav" aria-label="Jump to phase"></nav>
+</header>
+
+<!-- ROADMAP -->
+<main>
+  <div class="container">
+    <p class="section-head">📍 The 12-Phase Roadmap</p>
+    <p class="section-sub">Follow phases in order. Each builds on the last. Check off topics as you complete them — progress saves to your browser automatically.</p>
+    <div class="phases-grid" id="phases-grid"></div>
+  </div>
+</main>
+
+<!-- RESOURCES HUB -->
+<section class="res-hub">
+  <div class="res-hub-inner">
+    <div class="res-hub-head">
+      <h2>🔗 Verified Resources Hub</h2>
+      <p>Hand-picked by working developers. The exact resources used at top product companies.</p>
+    </div>
+    <div class="res-grid" id="res-grid"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <button class="reset-btn" onclick="resetAll()">↺ Reset Progress</button>
+  <span>Frontend Mastery Roadmap 2026 &middot; Keep shipping 🚀</span>
+</footer>
+
+<script>
+const SK = 'frontend_rm_v1';
+
+const PHASES = [
+  { id:'p0', ph:'00', title:'Dev Setup & Internet Basics', color:'#6366f1', dur:'1 week',
+    items:[
+      { id:'p0a', t:'How the internet works', d:'TCP/IP, DNS, HTTP/HTTPS, request-response cycle, browsers & servers' },
+      { id:'p0b', t:'Terminal / command line basics', d:'navigation (cd, ls, mkdir), file ops, basic shell commands' },
+      { id:'p0c', t:'Git fundamentals', d:'init, add, commit, push, pull, branches, merge, rebase basics' },
+      { id:'p0d', t:'GitHub essentials', d:'repos, branches, pull requests, issues, GitHub Pages, README' },
+      { id:'p0e', t:'VS Code setup & extensions', d:'Prettier, ESLint, GitLens, Live Server, Emmet, Path Intellisense' },
+      { id:'p0f', t:'Browser DevTools', d:'Elements, Console, Network, Performance, Application panels' },
+    ],
+    res:[
+      { l:'roadmap.sh/frontend', u:'https://roadmap.sh/frontend', free:true },
+      { l:'The Odin Project: Foundations', u:'https://www.theodinproject.com/paths/foundations', free:true },
+    ]
+  },
+  { id:'p1', ph:'01', title:'HTML — The Skeleton', color:'#f97316', dur:'2 weeks',
+    items:[
+      { id:'p1a', t:'HTML document structure', d:'doctype, html, head, body, charset, viewport meta tag' },
+      { id:'p1b', t:'Semantic elements', d:'header, nav, main, section, article, aside, footer — and why they matter' },
+      { id:'p1c', t:'Text & typography elements', d:'h1-h6, p, span, strong, em, blockquote, code, pre, abbr' },
+      { id:'p1d', t:'Links & images', d:'anchor, href, target, relative vs absolute paths, alt, srcset, lazy loading' },
+      { id:'p1e', t:'HTML forms', d:'input types, label, placeholder, required, pattern, fieldset, legend' },
+      { id:'p1f', t:'Lists & tables', d:'ul, ol, li, dl, table, thead, tbody, tr, th, td, scope attribute' },
+      { id:'p1g', t:'Multimedia elements', d:'video, audio, iframe, picture, source — and when to use each' },
+      { id:'p1h', t:'Meta tags & SEO basics', d:'title, description, open graph tags, canonical, robots, structured data' },
+      { id:'p1i', t:'HTML accessibility basics', d:'ARIA roles, alt text, tabindex, label for, landmark roles, skip links' },
+    ],
+    res:[
+      { l:'MDN: Learn HTML', u:'https://developer.mozilla.org/en-US/docs/Learn/HTML', free:true },
+      { l:'freeCodeCamp: Responsive Web Design', u:'https://www.freecodecamp.org/learn/2022/responsive-web-design/', free:true },
+    ]
+  },
+  { id:'p2', ph:'02', title:'CSS — The Skin', color:'#3b82f6', dur:'3-4 weeks',
+    items:[
+      { id:'p2a', t:'Box model', d:'margin, padding, border, content, box-sizing: border-box explained' },
+      { id:'p2b', t:'Selectors & specificity', d:'class, id, attribute, pseudo-class, combinators, specificity rules' },
+      { id:'p2c', t:'Colors, units & values', d:'hex, rgb, hsl, px, em, rem, vh, vw, %, clamp(), ch unit' },
+      { id:'p2d', t:'Typography', d:'font-family, size, weight, line-height, letter-spacing, Google Fonts' },
+      { id:'p2e', t:'Display & positioning', d:'block, inline, inline-block, static, relative, absolute, fixed, sticky' },
+      { id:'p2f', t:'Flexbox (complete)', d:'flex-direction, wrap, justify-content, align-items, align-self, gap' },
+      { id:'p2g', t:'CSS Grid (complete)', d:'grid-template, fr unit, grid-column/row, grid-area, auto-fill, minmax()' },
+      { id:'p2h', t:'Responsive design & media queries', d:'mobile-first approach, min/max-width breakpoints, fluid layouts' },
+      { id:'p2i', t:'CSS custom properties', d:'defining variables on :root, fallbacks, dynamic theming, scoped vars' },
+      { id:'p2j', t:'Pseudo-classes & pseudo-elements', d:':hover, :focus, :nth-child, :not, ::before, ::after, ::placeholder' },
+      { id:'p2k', t:'CSS animations & transitions', d:'@keyframes, animation shorthand, transition, timing functions, will-change' },
+      { id:'p2l', t:'CSS functions', d:'calc(), clamp(), min(), max(), var(), env() — write intrinsic layouts' },
+      { id:'p2m', t:'Tailwind CSS basics', d:'utility classes, responsive prefixes, dark mode, config, @apply directive' },
+    ],
+    res:[
+      { l:'CSS-Tricks: Complete Guide to Flexbox', u:'https://css-tricks.com/snippets/css/a-guide-to-flexbox/', free:true },
+      { l:'Kevin Powell — YouTube (CSS god)', u:'https://www.youtube.com/@KevinPowell', free:true },
+      { l:'Tailwind CSS Docs', u:'https://tailwindcss.com/docs', free:true },
+    ]
+  },
+  { id:'p3', ph:'03', title:'JavaScript — The Brain', color:'#eab308', dur:'6-8 weeks',
+    items:[
+      { id:'p3a', t:'Variables & data types', d:'var/let/const differences, string, number, boolean, null, undefined, object, array' },
+      { id:'p3b', t:'Operators & expressions', d:'arithmetic, comparison, logical, ternary, nullish coalescing (??)' },
+      { id:'p3c', t:'Control flow', d:'if/else, switch, for, while, for...of, for...in, break, continue' },
+      { id:'p3d', t:'Functions', d:'declaration, expression, arrow functions, default params, rest params, IIFE' },
+      { id:'p3e', t:'Scope & closures', d:'global, function, block scope, lexical scope, closure patterns, hoisting' },
+      { id:'p3f', t:'DOM manipulation', d:'querySelector, createElement, innerHTML, classList, style, dataset, events' },
+      { id:'p3g', t:'Event handling', d:'addEventListener, event object, bubbling & capturing, delegation, preventDefault' },
+      { id:'p3h', t:'Arrays & array methods', d:'map, filter, reduce, find, findIndex, forEach, some, every, flat, sort' },
+      { id:'p3i', t:'Objects & destructuring', d:'object methods, spread, rest, destructuring, optional chaining, nullish assign' },
+      { id:'p3j', t:'ES6+ features', d:'template literals, modules (import/export), classes, symbols, generators' },
+      { id:'p3k', t:'Error handling', d:'try/catch/finally, Error types, custom errors, async error handling patterns' },
+      { id:'p3l', t:'Promises & async/await', d:'Promise API, .then/.catch/.finally, async functions, await, Promise.all' },
+      { id:'p3m', t:'Fetch API & REST APIs', d:'GET/POST/PUT/DELETE, headers, JSON, status codes, AbortController' },
+      { id:'p3n', t:'Web Storage & browser APIs', d:'localStorage, sessionStorage, cookies, Intersection Observer, History API' },
+    ],
+    res:[
+      { l:'JavaScript.info', u:'https://javascript.info', free:true },
+      { l:'freeCodeCamp: JavaScript Algorithms', u:'https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/', free:true },
+      { l:'JavaScript30 by Wes Bos', u:'https://javascript30.com', free:true },
+    ]
+  },
+  { id:'p4', ph:'04', title:'React — The Architecture', color:'#06b6d4', dur:'4-6 weeks',
+    items:[
+      { id:'p4a', t:'React concepts & Virtual DOM', d:'component-based architecture, reconciliation, rendering, why React exists' },
+      { id:'p4b', t:'JSX syntax', d:'JSX rules, expressions in JSX, fragments, self-closing tags, className vs class' },
+      { id:'p4c', t:'Functional components & props', d:'passing data down, prop drilling, default props, children prop' },
+      { id:'p4d', t:'useState & event handling', d:'state updates, immutability, complex state objects, synthetic events' },
+      { id:'p4e', t:'useEffect & lifecycle', d:'dependencies array, cleanup functions, data fetching, subscriptions' },
+      { id:'p4f', t:'Conditional rendering', d:'&&, ternary, early return patterns, null/undefined rendering' },
+      { id:'p4g', t:'Lists & keys', d:'rendering arrays, key prop importance, stable keys, dynamic lists' },
+      { id:'p4h', t:'Forms in React', d:'controlled components, onChange, onSubmit, form state, multiple fields' },
+      { id:'p4i', t:'useRef', d:'DOM refs, mutable values without re-render, forwardRef, useImperativeHandle' },
+      { id:'p4j', t:'Context API', d:'createContext, Provider, useContext, when to use vs prop drilling' },
+      { id:'p4k', t:'Custom hooks', d:'extracting reusable logic, useFetch, useDebounce, custom hook patterns' },
+      { id:'p4l', t:'React Router v6', d:'BrowserRouter, Routes, Route, Link, NavLink, useParams, useNavigate' },
+      { id:'p4m', t:'Performance optimization', d:'React.memo, useMemo, useCallback, React.lazy, Suspense, code splitting' },
+      { id:'p4n', t:'Error boundaries', d:'ErrorBoundary class component, fallback UI, componentDidCatch' },
+    ],
+    res:[
+      { l:'React Official Docs', u:'https://react.dev', free:true },
+      { l:'Scrimba: Learn React (free)', u:'https://scrimba.com/learn-react-c0e', free:true },
+      { l:'Frontend Masters: Complete React v9', u:'https://frontendmasters.com/courses/complete-react-v9/', free:false },
+    ]
+  },
+  { id:'p5', ph:'05', title:'TypeScript — The Safety Net', color:'#3b82f6', dur:'2-3 weeks',
+    items:[
+      { id:'p5a', t:'Basic types', d:'string, number, boolean, any, void, never, unknown, literal types' },
+      { id:'p5b', t:'Arrays, tuples & enums', d:'typed arrays, readonly arrays, tuple syntax, const/numeric/string enums' },
+      { id:'p5c', t:'Interfaces & type aliases', d:'interface vs type, extending, implementing, declaration merging' },
+      { id:'p5d', t:'Union & intersection types', d:'| , &, discriminated unions, type guards, type narrowing' },
+      { id:'p5e', t:'Generics', d:'generic functions, generic interfaces, constraints with extends, defaults' },
+      { id:'p5f', t:'Utility types', d:'Partial, Required, Pick, Omit, Record, Readonly, ReturnType, Parameters' },
+      { id:'p5g', t:'TypeScript with React', d:'FC type, event types, prop typing, useRef types, typed custom hooks' },
+      { id:'p5h', t:'tsconfig & strict mode', d:'strict, target, lib, paths, moduleResolution, noImplicitAny' },
+    ],
+    res:[
+      { l:'TypeScript Official Docs', u:'https://www.typescriptlang.org/docs/', free:true },
+      { l:'Total TypeScript (Matt Pocock)', u:'https://www.totaltypescript.com', free:true },
+      { l:'TypeScript Deep Dive (free book)', u:'https://basarat.gitbook.io/typescript', free:true },
+    ]
+  },
+  { id:'p6', ph:'06', title:'Next.js — The Full-Stack Bridge', color:'#94a3b8', dur:'3-4 weeks',
+    items:[
+      { id:'p6a', t:'App Router fundamentals', d:'layout.tsx, page.tsx, loading.tsx, error.tsx, not-found.tsx files' },
+      { id:'p6b', t:'Server vs client components', d:'"use client" directive, when to use each, RSC benefits, composition' },
+      { id:'p6c', t:'Data fetching strategies', d:'fetch() with caching, time-based revalidation, cache(), unstable_cache' },
+      { id:'p6d', t:'SSG vs SSR vs ISR', d:'static generation, server-side rendering, incremental revalidation explained' },
+      { id:'p6e', t:'Server Actions', d:'form actions, mutations, useFormState, useFormStatus, useOptimistic' },
+      { id:'p6f', t:'Route handlers (API routes)', d:'route.ts files, GET/POST/PUT/DELETE, NextRequest, NextResponse' },
+      { id:'p6g', t:'Next.js middleware', d:'middleware.ts, matchers, redirects, auth guards, geo-routing' },
+      { id:'p6h', t:'next/image & next/font', d:'Image component, priority, sizes, formats; next/font for zero FOUT' },
+      { id:'p6i', t:'Metadata & SEO API', d:'generateMetadata, static metadata, opengraph, twitter card, robots.txt' },
+      { id:'p6j', t:'Parallel & intercepting routes', d:'slot folders (@), parallel route UI, intercepting for modals pattern' },
+    ],
+    res:[
+      { l:'Next.js Official Docs', u:'https://nextjs.org/docs', free:true },
+      { l:'Next.js Learn (interactive course)', u:'https://nextjs.org/learn', free:true },
+    ]
+  },
+  { id:'p7', ph:'07', title:'Styling & Design Systems', color:'#ec4899', dur:'2 weeks',
+    items:[
+      { id:'p7a', t:'Tailwind CSS v4 deep dive', d:'responsive, dark mode, custom config, @apply, arbitrary values, plugins' },
+      { id:'p7b', t:'shadcn/ui', d:'component library on Radix UI, theming with CSS variables, customization' },
+      { id:'p7c', t:'CSS Modules', d:'scoped styles, :local/:global, composes, how they work in Next.js & Vite' },
+      { id:'p7d', t:'Design tokens', d:'color, typography, spacing, shadow systems — keeping UI consistent at scale' },
+      { id:'p7e', t:'Storybook', d:'component documentation, stories, controls, addon-a11y, visual regression' },
+      { id:'p7f', t:'Responsive design mastery', d:'container queries, fluid typography, intrinsic web design, clamp()' },
+    ],
+    res:[
+      { l:'shadcn/ui Docs', u:'https://ui.shadcn.com', free:true },
+      { l:'Storybook Docs', u:'https://storybook.js.org/docs', free:true },
+    ]
+  },
+  { id:'p8', ph:'08', title:'State Management & Data Fetching', color:'#a855f7', dur:'1-2 weeks',
+    items:[
+      { id:'p8a', t:'Zustand', d:'store creation, slices pattern, devtools, persist middleware, shallow comparison' },
+      { id:'p8b', t:'TanStack Query (React Query)', d:'useQuery, useMutation, caching, invalidation, optimistic updates' },
+      { id:'p8c', t:'Redux Toolkit', d:'createSlice, createAsyncThunk, RTK Query — when this is the right tool' },
+      { id:'p8d', t:'SWR', d:'stale-while-revalidate pattern, useSWR, mutation, real-time updates' },
+      { id:'p8e', t:'Jotai / Recoil basics', d:'atomic state, derived atoms, async atoms — granular reactivity' },
+    ],
+    res:[
+      { l:'Zustand Docs', u:'https://docs.pmnd.rs/zustand', free:true },
+      { l:'TanStack Query Docs', u:'https://tanstack.com/query/latest', free:true },
+    ]
+  },
+  { id:'p9', ph:'09', title:'Build Tools & Testing', color:'#22c55e', dur:'2 weeks',
+    items:[
+      { id:'p9a', t:'Vite & module bundlers', d:'Vite config, HMR, plugins, build optimization, code splitting, chunking' },
+      { id:'p9b', t:'Package managers', d:'npm vs pnpm vs yarn, package.json, scripts, lock files, monorepo basics' },
+      { id:'p9c', t:'ESLint & Prettier', d:'rules, configs, plugins, .eslintrc, .prettierrc, husky + lint-staged' },
+      { id:'p9d', t:'Unit testing with Vitest', d:'describe, it, expect, mocking, coverage reports, snapshot testing' },
+      { id:'p9e', t:'React Testing Library', d:'render, getByRole, userEvent, screen, async queries, accessibility-first' },
+      { id:'p9f', t:'E2E testing with Playwright', d:'page.goto, locators, assertions, visual comparisons, parallel tests' },
+      { id:'p9g', t:'CI/CD basics', d:'GitHub Actions workflows, automated tests on PRs, preview deploys on Vercel' },
+    ],
+    res:[
+      { l:'Vitest Docs', u:'https://vitest.dev', free:true },
+      { l:'Testing Library Docs', u:'https://testing-library.com/docs/', free:true },
+      { l:'Playwright Docs', u:'https://playwright.dev', free:true },
+    ]
+  },
+  { id:'p10', ph:'10', title:'Performance & Accessibility', color:'#f59e0b', dur:'2 weeks',
+    items:[
+      { id:'p10a', t:'Core Web Vitals', d:'LCP, INP, CLS — what each measures, real-world thresholds, fixing each metric' },
+      { id:'p10b', t:'Lighthouse audits', d:'performance, accessibility, best practices, SEO — interpreting scores in CI' },
+      { id:'p10c', t:'Code splitting & lazy loading', d:'dynamic import(), React.lazy, Suspense, route-based splitting strategies' },
+      { id:'p10d', t:'Image optimization', d:'WebP/AVIF, srcset, sizes, lazy attribute, aspect-ratio to prevent layout shift' },
+      { id:'p10e', t:'Font optimization', d:'font-display, preload, FOUT/FOIT, variable fonts, subsetting, next/font' },
+      { id:'p10f', t:'WCAG 2.2 accessibility', d:'perceivable, operable, understandable, robust — achieving Level AA' },
+      { id:'p10g', t:'Keyboard navigation & focus', d:'focus management, focus traps, skip links, visible focus ring styles' },
+      { id:'p10h', t:'Screen reader testing', d:'NVDA, VoiceOver, ARIA live regions, axe DevTools, announcements' },
+    ],
+    res:[
+      { l:'web.dev (Google)', u:'https://web.dev', free:true },
+      { l:'MDN Accessibility Guide', u:'https://developer.mozilla.org/en-US/docs/Web/Accessibility', free:true },
+    ]
+  },
+  { id:'p11', ph:'11', title:'Advanced & Pro Level', color:'#8b5cf6', dur:'Ongoing',
+    items:[
+      { id:'p11a', t:'Framer Motion animations', d:'motion components, variants, layout animations, AnimatePresence, page transitions' },
+      { id:'p11b', t:'GSAP animations', d:'timeline, ScrollTrigger, morphing, advanced easing, React integration' },
+      { id:'p11c', t:'Browser Web APIs', d:'Intersection Observer, ResizeObserver, Web Workers, Service Workers' },
+      { id:'p11d', t:'Progressive Web Apps', d:'service worker, manifest.json, offline support, caching strategies, push' },
+      { id:'p11e', t:'Real-time features', d:'WebSocket API, Socket.io, SSE (Server-Sent Events), real-time UI patterns' },
+      { id:'p11f', t:'GraphQL with Apollo', d:'queries, mutations, subscriptions, Apollo Client cache, fragments' },
+      { id:'p11g', t:'Frontend system design', d:'component architecture, state design, module federation, micro-frontends' },
+      { id:'p11h', t:'AI/LLM integration in React', d:'Vercel AI SDK, streaming responses, RAG UI, tool use, Claude/OpenAI APIs' },
+      { id:'p11i', t:'Design patterns', d:'compound, container/presenter, observer, factory — study patterns.dev' },
+      { id:'p11j', t:'Open source contribution', d:'reading real codebases, first PR, maintainer mindset, documentation culture' },
+    ],
+    res:[
+      { l:'patterns.dev', u:'https://www.patterns.dev', free:true },
+      { l:'Vercel AI SDK Docs', u:'https://sdk.vercel.ai/docs', free:true },
+      { l:'Frontend Masters (paid)', u:'https://frontendmasters.com', free:false },
+    ]
+  },
+];
+
+const RESOURCES = [
+  { cat:'🆓 Free Resources — Tier 1', items:[
+    { ico:'🗺️', name:'roadmap.sh/frontend', url:'https://roadmap.sh/frontend', tag:'free', desc:'Community-approved visual roadmap. Your north star for direction.' },
+    { ico:'⚒️', name:'The Odin Project', url:'https://www.theodinproject.com', tag:'free', desc:'Best complete free curriculum — real projects, no hand-holding.' },
+    { ico:'🏕️', name:'freeCodeCamp', url:'https://www.freecodecamp.org', tag:'free', desc:'Structured lessons + certifications. Great for beginners.' },
+    { ico:'📖', name:'MDN Web Docs', url:'https://developer.mozilla.org', tag:'free', desc:'The reference bible. Keep open while coding at all times.' },
+    { ico:'🧩', name:'JavaScript.info', url:'https://javascript.info', tag:'free', desc:'Best JS deep-dive on the internet. Treat it as a textbook.' },
+    { ico:'🌐', name:'web.dev', url:'https://web.dev', tag:'free', desc:"Google's hub for performance, accessibility & web standards." },
+    { ico:'🎨', name:'CSS-Tricks', url:'https://css-tricks.com', tag:'free', desc:'Flexbox & Grid guides, CSS almanac, layout deep-dives.' },
+    { ico:'💻', name:'Scrimba (free tier)', url:'https://scrimba.com', tag:'free', desc:'Interactive coding — you edit code in the video. Learn by doing.' },
+  ]},
+  { cat:'💎 Paid — Worth Every Rupee', items:[
+    { ico:'🎓', name:'Frontend Masters', url:'https://frontendmasters.com', tag:'paid', desc:'$39/mo — Kyle Simpson, Scott Moss, Brian Holt. The best platform.' },
+    { ico:'🎬', name:'Scrimba Pro', url:'https://scrimba.com', tag:'paid', desc:'$24.50/mo — interactive coding. Best for React & JavaScript.' },
+    { ico:'🔷', name:'Total TypeScript', url:'https://www.totaltypescript.com', tag:'paid', desc:'Matt Pocock. The single best resource for mastering TypeScript.' },
+    { ico:'📚', name:'Udemy', url:'https://www.udemy.com', tag:'paid', desc:'$10-15/course by Maximilian Schwarzmüller — always wait for sale.' },
+  ]},
+  { cat:'📺 YouTube — Free & Elite', items:[
+    { ico:'🎨', name:'Kevin Powell', url:'https://www.youtube.com/@KevinPowell', tag:'yt', desc:'CSS god. Watch everything. Best CSS teacher on the internet.' },
+    { ico:'⚡', name:'Fireship', url:'https://www.youtube.com/@Fireship', tag:'yt', desc:'Fast, dense, entertaining. Perfect concept explainers.' },
+    { ico:'🚀', name:'Theo — t3.gg', url:'https://www.youtube.com/@t3dotgg', tag:'yt', desc:'Modern React, TypeScript, Next.js. Opinionated and usually right.' },
+    { ico:'⚛️', name:'Jack Herrington', url:'https://www.youtube.com/@jherr', tag:'yt', desc:'Advanced React patterns, micro-frontends, TypeScript mastery.' },
+    { ico:'🛠️', name:'Traversy Media', url:'https://www.youtube.com/@TraversyMedia', tag:'yt', desc:'Comprehensive project tutorials covering all major stacks.' },
+  ]},
+  { cat:'🏋️ Practice Platforms', items:[
+    { ico:'🎯', name:'Frontend Mentor', url:'https://www.frontendmentor.io', tag:'free', desc:'Build from real Figma designs — the best portfolio builder.' },
+    { ico:'⚔️', name:'CSS Battle', url:'https://cssbattle.dev', tag:'free', desc:'Gamified CSS challenges — trains your precision and creativity.' },
+    { ico:'🏆', name:'JavaScript30', url:'https://javascript30.com', tag:'free', desc:'30 vanilla JS projects by Wes Bos. Legendary, completely free.' },
+    { ico:'🥋', name:'Codewars', url:'https://www.codewars.com', tag:'free', desc:'Kata challenges — sharpen your JS algorithm & problem-solving.' },
+  ]},
+];
+
+const LEVELS = [
+  [0, 'Initiate 🌱'], [12, 'Apprentice 🔧'], [25, 'Developer 💻'],
+  [40, 'Builder 🏗️'], [55, 'Engineer ⚡'], [70, 'Senior Dev 🚀'],
+  [86, 'Pro 🎯'], [100, 'Frontend Master 👑']
+];
+
+function getLevel(p) {
+  let lv = LEVELS[0][1];
+  for (const [t, n] of LEVELS) if (p >= t) lv = n;
+  return lv;
+}
+
+let checked = {};
+
+function loadChecked() {
+  try { const s = localStorage.getItem(SK); if (s) checked = JSON.parse(s); } catch(e) { checked = {}; }
+}
+function saveChecked() {
+  try { localStorage.setItem(SK, JSON.stringify(checked)); } catch(e) {}
+}
+
+function buildPhaseNav() {
+  const nav = document.getElementById('phase-nav');
+  nav.innerHTML = PHASES.map(ph =>
+    `<button class="ph-nav-btn" onclick="document.getElementById('pc-${ph.id}').scrollIntoView({behavior:'smooth',block:'start'})" style="border-color:${ph.color}30;color:${ph.color}" aria-label="Jump to Phase ${ph.ph}">
+      ${ph.ph}
+    </button>`
+  ).join('');
+}
+
+function buildPhases() {
+  const grid = document.getElementById('phases-grid');
+  let html = '';
+  for (const ph of PHASES) {
+    const done = ph.items.filter(i => checked[i.id]).length;
+    const pct  = Math.round(done / ph.items.length * 100);
+    const isDone = pct === 100;
+    html += `
+    <div class="pc${isDone ? ' done' : ''}" id="pc-${ph.id}" style="--pc:${ph.color}">
+      <div class="pc-head">
+        <div class="pc-top">
+          <span class="pc-num">Phase ${ph.ph}</span>
+          <span class="pc-dur">${ph.dur}</span>
+        </div>
+        <div class="pc-title">${ph.title}</div>
+        <div class="pc-prog" id="pp-${ph.id}">
+          <div class="pc-prog-track">
+            <div class="pc-prog-fill" id="pf-${ph.id}" style="width:${pct}%"></div>
+          </div>
+          <span class="pc-prog-lbl" id="pl-${ph.id}">${done}/${ph.items.length}</span>
+        </div>
+        <div class="done-badge" id="db-${ph.id}">✓ Phase Complete</div>
+      </div>
+      <div class="pc-items">
+        ${ph.items.map(it => {
+          const chk = checked[it.id] ? 'checked' : '';
+          return `<div class="it">
+            <label class="it-lbl" for="cb-${it.id}">
+              <input type="checkbox" class="it-inp" id="cb-${it.id}"
+                     data-ph="${ph.id}" ${chk}
+                     onchange="toggle('${it.id}','${ph.id}',this.checked,this)">
+              <div class="cb">
+                <svg class="cb-icon" width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden="true">
+                  <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="it-body">
+                <div class="it-t">${it.t}</div>
+                <div class="it-d">${it.d}</div>
+              </div>
+            </label>
+          </div>`;
+        }).join('')}
+      </div>
+      <div class="pc-res">
+        ${ph.res.map(r =>
+          `<a href="${r.u}" target="_blank" rel="noopener" class="res-btn${r.free ? ' free' : ''}">${r.l} ↗</a>`
+        ).join('')}
+      </div>
+    </div>`;
+  }
+  grid.innerHTML = html;
+}
+
+function buildResources() {
+  const grid = document.getElementById('res-grid');
+  grid.innerHTML = RESOURCES.map(cat => `
+    <div class="res-cat">
+      <div class="res-cat-h">${cat.cat}</div>
+      ${cat.items.map(it => `
+        <div class="ri">
+          <span class="ri-ico">${it.ico}</span>
+          <div>
+            <div class="ri-name">
+              <a href="${it.url}" target="_blank" rel="noopener">${it.name}</a>
+              <span class="ri-tag ${it.tag}">${it.tag.toUpperCase()}</span>
+            </div>
+            <div class="ri-desc">${it.desc}</div>
+          </div>
+        </div>`).join('')}
+    </div>`).join('');
+}
+
+function updateGlobal() {
+  const total   = PHASES.reduce((s, ph) => s + ph.items.length, 0);
+  const done    = Object.keys(checked).length;
+  const phDone  = PHASES.filter(ph => ph.items.every(i => checked[i.id])).length;
+  const pct     = total > 0 ? Math.round(done / total * 100) : 0;
+
+  document.getElementById('cnt-done').textContent = done;
+  document.getElementById('cnt-tot').textContent  = total;
+  document.getElementById('cnt-ph').textContent   = phDone;
+  document.getElementById('gbar').style.width     = pct + '%';
+  document.getElementById('gpct').textContent     = pct + '%';
+  document.getElementById('lvl-badge').textContent = getLevel(pct);
+}
+
+function updatePhase(phId) {
+  const ph   = PHASES.find(p => p.id === phId);
+  if (!ph) return;
+  const done = ph.items.filter(i => checked[i.id]).length;
+  const pct  = Math.round(done / ph.items.length * 100);
+  const fill = document.getElementById('pf-' + phId);
+  const lbl  = document.getElementById('pl-' + phId);
+  const card = document.getElementById('pc-' + phId);
+  if (fill) fill.style.width = pct + '%';
+  if (lbl)  lbl.textContent  = done + '/' + ph.items.length;
+  if (card) {
+    const wasDone = card.classList.contains('done');
+    card.classList.toggle('done', pct === 100);
+    if (pct === 100 && !wasDone) shootConfetti(card);
+  }
+}
+
+function shootConfetti(el) {
+  const rect   = el.getBoundingClientRect();
+  const colors = ['#8b5cf6','#22d3ee','#10b981','#f59e0b','#ec4899','#f97316'];
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'confetti-p';
+    p.style.cssText = `
+      left:${rect.left + Math.random() * rect.width}px;
+      top:${rect.top + window.scrollY + 20}px;
+      background:${colors[Math.floor(Math.random() * colors.length)]};
+      border-radius:${Math.random() > 0.5 ? '50%' : '2px'};
+      animation-delay:${Math.random() * 0.25}s;
+      animation-duration:${0.55 + Math.random() * 0.55}s;`;
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 1100);
+  }
+}
+
+function showXP(el, gain) {
+  const rect = el.getBoundingClientRect();
+  const t    = document.createElement('div');
+  t.className  = 'xp-toast';
+  t.textContent = gain > 0 ? '+10 XP' : '−10 XP';
+  t.style.left  = (rect.right + 8) + 'px';
+  t.style.top   = (rect.top + window.scrollY - 4) + 'px';
+  t.style.color = gain > 0 ? '#34d399' : '#f87171';
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 950);
+}
+
+function toggle(id, phId, isChecked, el) {
+  if (isChecked) checked[id] = true;
+  else delete checked[id];
+  updatePhase(phId);
+  updateGlobal();
+  showXP(el, isChecked ? 10 : -10);
+  saveChecked();
+}
+
+function resetAll() {
+  if (!confirm('Reset all progress? This cannot be undone.')) return;
+  checked = {};
+  saveChecked();
+  buildPhases();
+  updateGlobal();
+}
+
+// Boot
+loadChecked();
+buildPhaseNav();
+buildPhases();
+buildResources();
+updateGlobal();
+</script>
+</body>
+</html>
