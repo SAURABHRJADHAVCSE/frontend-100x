@@ -201,3 +201,102 @@ export function ShellStackDiagram() {
     </Figure>
   );
 }
+
+type FlowStep = { label: string; sub?: string };
+
+/** A generic horizontal step-by-step flow — reused for Git areas, the GitHub PR flow, and DevTools panels. */
+export function StepFlowDiagram({ caption, steps }: { caption: string; steps: FlowStep[] }) {
+  const boxWidth = 140;
+  const gap = 24;
+  const width = steps.length * boxWidth + (steps.length - 1) * gap + 20;
+  const hasSub = steps.some((s) => s.sub);
+  const height = hasSub ? 76 : 56;
+
+  return (
+    <Figure caption={caption}>
+      <svg viewBox={`0 0 ${width} ${height}`} className="mx-auto w-full text-foreground" aria-hidden="true">
+        {steps.map((step, i) => {
+          const x = 10 + i * (boxWidth + gap);
+          return (
+            <g key={step.label}>
+              <rect
+                x={x}
+                y="6"
+                width={boxWidth}
+                height={height - 12}
+                rx="8"
+                className="fill-card stroke-border"
+                strokeWidth="1.5"
+              />
+              <text
+                x={x + boxWidth / 2}
+                y={hasSub ? "30" : "34"}
+                textAnchor="middle"
+                className="fill-foreground text-[12px] font-semibold"
+              >
+                {step.label}
+              </text>
+              {step.sub && (
+                <text x={x + boxWidth / 2} y="48" textAnchor="middle" className="fill-muted-foreground text-[9px]">
+                  {step.sub}
+                </text>
+              )}
+              {i < steps.length - 1 && (
+                <line
+                  x1={x + boxWidth}
+                  y1={(height - 12) / 2 + 6}
+                  x2={x + boxWidth + gap}
+                  y2={(height - 12) / 2 + 6}
+                  className="stroke-muted-foreground"
+                  strokeWidth="1.5"
+                  markerEnd="url(#step-arrow)"
+                />
+              )}
+            </g>
+          );
+        })}
+        <defs>
+          <marker id="step-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" className="fill-muted-foreground" />
+          </marker>
+        </defs>
+      </svg>
+    </Figure>
+  );
+}
+
+/** main branch with a feature branch splitting off and merging back in. */
+export function BranchGraphDiagram() {
+  const mainY = 100;
+  const featureY = 40;
+  const mainCommits = [40, 120, 320];
+  const featureCommits = [200, 260];
+
+  return (
+    <Figure caption="A branch is just an alternate line of commits that can be merged back into main.">
+      <svg viewBox="0 0 360 130" className="mx-auto w-full max-w-md text-foreground" aria-hidden="true">
+        <line x1="20" y1={mainY} x2="340" y2={mainY} className="stroke-border" strokeWidth="2" />
+        <line x1={mainCommits[1]} y1={mainY} x2={featureCommits[0]} y2={featureY} className="stroke-border" strokeWidth="1.5" strokeDasharray="3 3" />
+        <line x1={featureCommits[0]} y1={featureY} x2={featureCommits[1]} y2={featureY} className="stroke-border" strokeWidth="2" />
+        <line x1={featureCommits[1]} y1={featureY} x2={mainCommits[2]} y2={mainY} className="stroke-primary" strokeWidth="1.5" strokeDasharray="3 3" />
+
+        {mainCommits.map((x, i) => (
+          <circle key={`main-${i}`} cx={x} cy={mainY} r="6" className="fill-foreground" />
+        ))}
+        {featureCommits.map((x, i) => (
+          <circle key={`feat-${i}`} cx={x} cy={featureY} r="6" className="fill-primary" />
+        ))}
+
+        <text x="20" y={mainY + 20} className="fill-muted-foreground text-[10px] font-medium">
+          main
+        </text>
+        <text x={featureCommits[0]} y={featureY - 12} textAnchor="middle" className="fill-primary text-[10px] font-medium">
+          feature branch
+        </text>
+        <text x={mainCommits[2]} y={mainY + 20} textAnchor="middle" className="fill-muted-foreground text-[10px]">
+          merge commit
+        </text>
+      </svg>
+    </Figure>
+  );
+}

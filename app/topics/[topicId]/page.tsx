@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CompleteToggle } from "@/components/topic/complete-toggle";
 import { TableOfContents } from "@/components/topic/table-of-contents";
 import { findTopicBySlug, getAllTopicSlugs } from "@/lib/roadmap-data";
 import { getTopicContent } from "@/lib/topic-content/registry";
@@ -41,9 +42,12 @@ export default async function TopicPage({ params }: TopicPageProps) {
           <span className="font-heading text-xs font-semibold tracking-widest text-muted-foreground uppercase">
             Phase {found.phase.number} · {found.phase.title}
           </span>
-          <h1 className="mt-1 mb-8 font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            {found.topic.title}
-          </h1>
+          <div className="mt-1 mb-8 flex flex-wrap items-center justify-between gap-4">
+            <h1 className="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              {found.topic.title}
+            </h1>
+            <CompleteToggle slug={found.topic.slug} />
+          </div>
 
           {TopicContent ? (
             // eslint-disable-next-line react-hooks/static-components -- TOPIC_CONTENT holds stable, module-level component references, never created during render
