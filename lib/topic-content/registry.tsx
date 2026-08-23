@@ -15,6 +15,21 @@ import MultimediaElements from "@/lib/topic-content/multimedia-elements";
 import MetaTagsSeoBasics from "@/lib/topic-content/meta-tags-seo-basics";
 import HtmlAccessibilityBasics from "@/lib/topic-content/html-accessibility-basics";
 
+// Phase 02 (CSS) Imports
+import BoxModelTopic from "@/lib/topic-content/box-model";
+import SelectorsSpecificityTopic from "@/lib/topic-content/selectors-specificity";
+import ColorsUnitsValuesTopic from "@/lib/topic-content/colors-units-values";
+import TypographyTopic from "@/lib/topic-content/typography";
+import DisplayPositioningTopic from "@/lib/topic-content/display-positioning";
+import FlexboxCompleteTopic from "@/lib/topic-content/flexbox-complete";
+import CssGridCompleteTopic from "@/lib/topic-content/css-grid-complete";
+import ResponsiveDesignTopic from "@/lib/topic-content/responsive-design-media-queries";
+import CustomPropertiesTopic from "@/lib/topic-content/css-custom-properties";
+import PseudoClassesElementsTopic from "@/lib/topic-content/pseudo-classes-pseudo-elements";
+import AnimationsTransitionsTopic from "@/lib/topic-content/css-animations-transitions";
+import CssFunctionsTopic from "@/lib/topic-content/css-functions";
+import TailwindCssBasicsTopic from "@/lib/topic-content/tailwind-css-basics";
+
 export const TOPIC_CONTENT: Record<string, ComponentType> = {
   "how-the-internet-works": HowTheInternetWorks,
   "terminal-command-line-basics": TerminalCommandLineBasics,
@@ -31,8 +46,24 @@ export const TOPIC_CONTENT: Record<string, ComponentType> = {
   "multimedia-elements": MultimediaElements,
   "meta-tags-seo-basics": MetaTagsSeoBasics,
   "html-accessibility-basics": HtmlAccessibilityBasics,
+
+  // Phase 02 (CSS) Topics
+  "box-model": BoxModelTopic,
+  "selectors-specificity": SelectorsSpecificityTopic,
+  "colors-units-values": ColorsUnitsValuesTopic,
+  "typography": TypographyTopic,
+  "display-positioning": DisplayPositioningTopic,
+  "flexbox-complete": FlexboxCompleteTopic,
+  "css-grid-complete": CssGridCompleteTopic,
+  "responsive-design-media-queries": ResponsiveDesignTopic,
+  "css-custom-properties": CustomPropertiesTopic,
+  "pseudo-classes-pseudo-elements": PseudoClassesElementsTopic,
+  "css-animations-transitions": AnimationsTransitionsTopic,
+  "css-functions": CssFunctionsTopic,
+  "tailwind-css-basics": TailwindCssBasicsTopic,
 };
 
 export function getTopicContent(slug: string): ComponentType | undefined {
   return TOPIC_CONTENT[slug];
 }
+
