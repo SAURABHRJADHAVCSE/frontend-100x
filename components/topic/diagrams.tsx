@@ -457,3 +457,142 @@ export function ResponsiveImageDiagram() {
     </Figure>
   );
 }
+
+/** A table's row/column grid, with the header row and thead/tbody grouping highlighted. */
+export function TableAnatomyDiagram() {
+  const cols = 3;
+  const rows = 3;
+  const cellW = 90;
+  const cellH = 32;
+  const width = cols * cellW + 20;
+  const theadTop = 16;
+  const theadHeight = cellH + 8;
+  const tbodyTop = theadTop + theadHeight + 14;
+  const tbodyHeight = (rows - 1) * cellH + 8;
+  const height = tbodyTop + tbodyHeight + 8;
+
+  return (
+    <Figure caption="thead groups the header row; tbody groups the data rows — th cells are header cells, td cells hold data.">
+      <svg viewBox={`0 0 ${width} ${height}`} className="mx-auto w-full max-w-sm text-foreground" aria-hidden="true">
+        <rect x="6" y={theadTop} width={width - 12} height={theadHeight} rx="6" className="fill-primary/10 stroke-primary/40" strokeWidth="1.5" />
+        <text x="14" y={theadTop - 4} className="fill-primary text-[9px] font-semibold uppercase tracking-wide">
+          thead
+        </text>
+        <rect x="6" y={tbodyTop} width={width - 12} height={tbodyHeight} rx="6" className="fill-muted/50 stroke-border" strokeWidth="1.5" />
+        <text x="14" y={tbodyTop - 4} className="fill-muted-foreground text-[9px] font-semibold uppercase tracking-wide">
+          tbody
+        </text>
+
+        {Array.from({ length: rows }).map((_, r) =>
+          Array.from({ length: cols }).map((_, c) => {
+            const x = 10 + c * cellW;
+            const y = r === 0 ? theadTop + 4 : tbodyTop + 4 + (r - 1) * cellH;
+            const isHeader = r === 0;
+            return (
+              <g key={`${r}-${c}`}>
+                <rect
+                  x={x}
+                  y={y}
+                  width={cellW - 4}
+                  height={cellH - 4}
+                  rx="4"
+                  className={isHeader ? "fill-primary/15 stroke-primary/50" : "fill-card stroke-border"}
+                  strokeWidth="1"
+                />
+                <text
+                  x={x + (cellW - 4) / 2}
+                  y={y + (cellH - 4) / 2 + 4}
+                  textAnchor="middle"
+                  className={isHeader ? "fill-primary font-mono text-[9px] font-semibold" : "fill-muted-foreground font-mono text-[9px]"}
+                >
+                  {isHeader ? "th" : "td"}
+                </text>
+              </g>
+            );
+          }),
+        )}
+      </svg>
+    </Figure>
+  );
+}
+
+/** Maps a search-result snippet back to the meta tags that produced each part. */
+export function SearchResultAnatomyDiagram() {
+  return (
+    <Figure caption="Search engines build the result snippet almost entirely from your <title> and meta description.">
+      <svg viewBox="0 0 400 130" className="mx-auto w-full max-w-md text-foreground" aria-hidden="true">
+        <rect x="4" y="4" width="392" height="122" rx="8" className="fill-card stroke-border" strokeWidth="1.5" />
+
+        <text x="20" y="30" className="fill-muted-foreground text-[9.5px]">
+          example.com › blog › post-1
+        </text>
+        <text x="20" y="52" className="fill-primary text-[13px] font-medium">
+          How Semantic HTML Improves Accessibility
+        </text>
+        <text x="20" y="76" className="fill-foreground/80 text-[10.5px]">
+          Learn why landmark elements and headings matter for screen readers,
+        </text>
+        <text x="20" y="90" className="fill-foreground/80 text-[10.5px]">
+          SEO, and long-term maintainability — with real examples.
+        </text>
+
+        <text x="220" y="52" className="fill-muted-foreground font-mono text-[9px]">
+          ← {"<title>"}
+        </text>
+        <text x="220" y="90" className="fill-muted-foreground font-mono text-[9px]">
+          ← meta description
+        </text>
+      </svg>
+    </Figure>
+  );
+}
+
+/** Tab-key focus order flowing through a page's interactive elements, in DOM order. */
+export function TabOrderDiagram() {
+  const stops = [
+    { x: 40, y: 20, label: "Skip link" },
+    { x: 150, y: 20, label: "Nav link" },
+    { x: 260, y: 20, label: "Nav link" },
+    { x: 260, y: 80, label: "Submit button" },
+    { x: 150, y: 80, label: "Input field" },
+    { x: 40, y: 80, label: "Input field" },
+  ];
+  return (
+    <Figure caption="Pressing Tab moves focus through every focusable element in DOM order — not visual order.">
+      <svg viewBox="0 0 340 110" className="mx-auto w-full max-w-md text-foreground" aria-hidden="true">
+        {stops.map((s, i) => (
+          <g key={i}>
+            {i < stops.length - 1 && (
+              <line
+                x1={s.x}
+                y1={s.y}
+                x2={stops[i + 1].x}
+                y2={stops[i + 1].y}
+                className="stroke-primary/50"
+                strokeWidth="1.5"
+                strokeDasharray="3 3"
+                markerEnd="url(#tab-arrow)"
+              />
+            )}
+          </g>
+        ))}
+        {stops.map((s, i) => (
+          <g key={s.label + i}>
+            <circle cx={s.x} cy={s.y} r="14" className="fill-primary/15 stroke-primary/60" strokeWidth="1.5" />
+            <text x={s.x} y={s.y + 4} textAnchor="middle" className="fill-primary text-[10px] font-bold">
+              {i + 1}
+            </text>
+            <text x={s.x} y={s.y + 28} textAnchor="middle" className="fill-muted-foreground text-[8px]">
+              {s.label}
+            </text>
+          </g>
+        ))}
+        <defs>
+          <marker id="tab-arrow" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+            <path d="M0,0 L5,2.5 L0,5 Z" className="fill-primary/50" />
+          </marker>
+        </defs>
+      </svg>
+    </Figure>
+  );
+}
