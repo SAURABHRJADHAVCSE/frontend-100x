@@ -300,3 +300,160 @@ export function BranchGraphDiagram() {
     </Figure>
   );
 }
+
+/** html -> head/body -> a few common body children, as a tree. */
+export function DomTreeDiagram() {
+  const node = (x: number, y: number, label: string, tone: "root" | "branch" | "leaf" = "leaf") => ({
+    x,
+    y,
+    label,
+    tone,
+  });
+  const nodes = [
+    node(180, 14, "<html>", "root"),
+    node(90, 60, "<head>", "branch"),
+    node(270, 60, "<body>", "branch"),
+    node(30, 108, "<title>", "leaf"),
+    node(150, 108, "<meta>", "leaf"),
+    node(220, 108, "<header>", "leaf"),
+    node(290, 108, "<main>", "leaf"),
+    node(355, 108, "<footer>", "leaf"),
+  ];
+  const edges: [number, number][] = [
+    [0, 1],
+    [0, 2],
+    [1, 3],
+    [1, 4],
+    [2, 5],
+    [2, 6],
+    [2, 7],
+  ];
+  const fill: Record<string, string> = {
+    root: "fill-primary/15 stroke-primary/50",
+    branch: "fill-card stroke-border",
+    leaf: "fill-muted stroke-border",
+  };
+  return (
+    <Figure caption="Every HTML document is one tree: html branches into head and body, which branch further.">
+      <svg viewBox="0 0 400 140" className="mx-auto w-full max-w-lg text-foreground" aria-hidden="true">
+        {edges.map(([a, b], i) => (
+          <line
+            key={i}
+            x1={nodes[a].x}
+            y1={nodes[a].y + 10}
+            x2={nodes[b].x}
+            y2={nodes[b].y - 10}
+            className="stroke-border"
+            strokeWidth="1.5"
+          />
+        ))}
+        {nodes.map((n) => (
+          <g key={n.label}>
+            <rect x={n.x - 32} y={n.y - 10} width="64" height="22" rx="5" className={fill[n.tone]} strokeWidth="1.5" />
+            <text x={n.x} y={n.y + 5} textAnchor="middle" className="fill-foreground font-mono text-[9.5px]">
+              {n.label}
+            </text>
+          </g>
+        ))}
+      </svg>
+    </Figure>
+  );
+}
+
+/** A real page wireframe showing where each landmark element typically sits. */
+export function SemanticLayoutDiagram() {
+  return (
+    <Figure caption="Landmark elements aren't just labels — screen readers use them to let users jump straight to a section.">
+      <svg viewBox="0 0 400 260" className="mx-auto w-full max-w-sm text-foreground" aria-hidden="true">
+        <rect x="4" y="4" width="392" height="252" rx="8" className="fill-none stroke-border" strokeWidth="1.5" />
+
+        <rect x="14" y="14" width="372" height="40" rx="5" className="fill-primary/10 stroke-primary/40" strokeWidth="1.5" />
+        <text x="30" y="38" className="fill-primary font-mono text-[11px] font-semibold">
+          {"<header>"}
+        </text>
+
+        <rect x="14" y="64" width="90" height="150" rx="5" className="fill-muted stroke-border" strokeWidth="1.5" />
+        <text x="24" y="84" className="fill-foreground font-mono text-[10px] font-semibold">
+          {"<aside>"}
+        </text>
+        <text x="24" y="100" className="fill-muted-foreground text-[8.5px]">
+          sidebar, related links
+        </text>
+
+        <rect x="114" y="64" width="272" height="150" rx="5" className="fill-card stroke-border" strokeWidth="1.5" />
+        <text x="126" y="84" className="fill-foreground font-mono text-[11px] font-semibold">
+          {"<main>"}
+        </text>
+        <rect x="126" y="94" width="248" height="52" rx="4" className="fill-muted/70 stroke-border" strokeWidth="1" />
+        <text x="136" y="112" className="fill-muted-foreground font-mono text-[9.5px]">
+          {"<article>"}
+        </text>
+        <rect x="126" y="154" width="248" height="52" rx="4" className="fill-muted/70 stroke-border" strokeWidth="1" />
+        <text x="136" y="172" className="fill-muted-foreground font-mono text-[9.5px]">
+          {"<section>"}
+        </text>
+
+        <rect x="14" y="224" width="372" height="32" rx="5" className="fill-primary/10 stroke-primary/40" strokeWidth="1.5" />
+        <text x="30" y="244" className="fill-primary font-mono text-[11px] font-semibold">
+          {"<footer>"}
+        </text>
+      </svg>
+    </Figure>
+  );
+}
+
+/** The browser picks one candidate image from srcset based on the viewport's real width. */
+export function ResponsiveImageDiagram() {
+  const candidates = [
+    { label: "small.jpg", sub: "480w", active: true },
+    { label: "medium.jpg", sub: "800w", active: false },
+    { label: "large.jpg", sub: "1600w", active: false },
+  ];
+  return (
+    <Figure caption="On a narrow screen, the browser picks the smallest image that still looks sharp — saving bandwidth automatically.">
+      <svg viewBox="0 0 360 130" className="mx-auto w-full max-w-md text-foreground" aria-hidden="true">
+        <rect x="130" y="10" width="100" height="34" rx="7" className="fill-card stroke-border" strokeWidth="1.5" />
+        <text x="180" y="31" textAnchor="middle" className="fill-foreground text-[11px] font-medium">
+          Narrow viewport
+        </text>
+
+        {candidates.map((c, i) => {
+          const x = 10 + i * 120;
+          return (
+            <g key={c.label}>
+              <line
+                x1="180"
+                y1="44"
+                x2={x + 50}
+                y2="76"
+                className={c.active ? "stroke-primary" : "stroke-border"}
+                strokeWidth={c.active ? 2 : 1.2}
+                strokeDasharray={c.active ? undefined : "3 3"}
+              />
+              <rect
+                x={x}
+                y="78"
+                width="100"
+                height="38"
+                rx="7"
+                className={c.active ? "fill-primary/15 stroke-primary/60" : "fill-muted stroke-border"}
+                strokeWidth="1.5"
+              />
+              <text
+                x={x + 50}
+                y="98"
+                textAnchor="middle"
+                className={c.active ? "fill-primary font-mono text-[10.5px] font-semibold" : "fill-muted-foreground font-mono text-[10.5px]"}
+              >
+                {c.label}
+              </text>
+              <text x={x + 50} y="111" textAnchor="middle" className="fill-muted-foreground text-[8.5px]">
+                {c.sub}
+              </text>
+            </g>
+          );
+        })}
+      </svg>
+    </Figure>
+  );
+}
