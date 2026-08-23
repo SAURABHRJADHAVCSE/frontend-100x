@@ -1,5 +1,6 @@
 import { CodeBlock } from "@/components/topic/code-block";
 import { BranchGraphDiagram, StepFlowDiagram } from "@/components/topic/diagrams";
+import { GitVisualizerPlayground } from "@/components/topic/phase0-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
 
 export default function GitFundamentals() {
@@ -12,6 +13,8 @@ export default function GitFundamentals() {
         GitHub — Git is a program that runs entirely on your own machine and quietly remembers every version of your
         project you&apos;ve ever told it to remember.
       </P>
+
+      <GitVisualizerPlayground />
 
       <H2>1. The problem Git actually solves</H2>
       <P>

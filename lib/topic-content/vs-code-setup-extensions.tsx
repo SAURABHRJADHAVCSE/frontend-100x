@@ -1,4 +1,5 @@
 import { CodeBlock } from "@/components/topic/code-block";
+import { VsCodeShortcutsStudio } from "@/components/topic/phase0-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
 
 export default function VsCodeSetupExtensions() {
@@ -10,6 +11,8 @@ export default function VsCodeSetupExtensions() {
         properly, it becomes an environment that catches your mistakes before you run the code, formats everything
         automatically, and lets you navigate a 10,000-file project without ever touching the mouse.
       </P>
+
+      <VsCodeShortcutsStudio />
 
       <H2>1. The Command Palette — the one shortcut that unlocks everything</H2>
       <P>

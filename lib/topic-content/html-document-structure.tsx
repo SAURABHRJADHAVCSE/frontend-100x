@@ -1,5 +1,6 @@
 import { CodeBlock } from "@/components/topic/code-block";
 import { DomTreeDiagram } from "@/components/topic/diagrams";
+import { HtmlDocumentPlayground } from "@/components/topic/phase1-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
 
 export default function HtmlDocumentStructure() {
@@ -12,6 +13,8 @@ export default function HtmlDocumentStructure() {
         browser reads those labels and decides how to render, structure, and expose the content — to sighted users,
         to screen readers, and to search engines, all from the exact same markup.
       </P>
+
+      <HtmlDocumentPlayground />
 
       <H2>1. Every document is one tree</H2>
       <P>

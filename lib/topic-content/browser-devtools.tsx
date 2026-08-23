@@ -1,5 +1,6 @@
 import { CodeBlock } from "@/components/topic/code-block";
 import { StepFlowDiagram } from "@/components/topic/diagrams";
+import { DevtoolsInspectorPlayground } from "@/components/topic/phase0-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
 
 export default function BrowserDevtools() {
@@ -12,6 +13,8 @@ export default function BrowserDevtools() {
         anything. Open it right now with <Code>F12</Code>, <Code>Ctrl+Shift+I</Code>, or by right-clicking anything
         on a page and choosing &quot;Inspect&quot;.
       </P>
+
+      <DevtoolsInspectorPlayground />
 
       <H2>1. The panels, at a glance</H2>
       <StepFlowDiagram

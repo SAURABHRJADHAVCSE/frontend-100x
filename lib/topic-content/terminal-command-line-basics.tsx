@@ -1,5 +1,6 @@
 import { CodeBlock } from "@/components/topic/code-block";
 import { CommandAnatomyDiagram, ShellStackDiagram } from "@/components/topic/diagrams";
+import { TerminalSimulator } from "@/components/topic/phase0-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
 
 export default function TerminalCommandLineBasics() {
@@ -13,6 +14,8 @@ export default function TerminalCommandLineBasics() {
         more repeatable, and scriptable. This is why every professional developer, sysadmin, and data scientist ends
         up living in a terminal window.
       </P>
+
+      <TerminalSimulator />
 
       <H2>1. Terminal vs shell vs command line — three words, three different things</H2>
       <UL>

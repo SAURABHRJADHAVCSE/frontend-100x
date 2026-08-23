@@ -1,5 +1,6 @@
 import { CodeBlock } from "@/components/topic/code-block";
 import { StepFlowDiagram } from "@/components/topic/diagrams";
+import { GithubFlowPlayground } from "@/components/topic/phase0-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P } from "@/components/topic/prose";
 
 export default function GithubEssentials() {
@@ -13,6 +14,8 @@ export default function GithubEssentials() {
         touching GitHub. But GitHub is where the software industry actually collaborates, so knowing it well is a
         career skill, not just a technical one.
       </P>
+
+      <GithubFlowPlayground />
 
       <H2>1. A repository, hosted</H2>
       <P>

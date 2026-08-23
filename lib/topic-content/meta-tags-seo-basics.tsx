@@ -1,5 +1,6 @@
 import { CodeBlock } from "@/components/topic/code-block";
 import { SearchResultAnatomyDiagram } from "@/components/topic/diagrams";
+import { SeoMetaPreviewer } from "@/components/topic/phase1-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
 
 export default function MetaTagsSeoBasics() {
@@ -11,6 +12,8 @@ export default function MetaTagsSeoBasics() {
         engines understand what the page is even about. Meta tags are invisible to visitors and read almost
         entirely by machines — which makes them easy to forget and expensive to get wrong.
       </P>
+
+      <SeoMetaPreviewer />
 
       <H2>1. The two tags that build your search result</H2>
       <CodeBlock

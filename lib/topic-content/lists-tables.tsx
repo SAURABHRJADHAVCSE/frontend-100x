@@ -1,5 +1,6 @@
 import { CodeBlock } from "@/components/topic/code-block";
 import { TableAnatomyDiagram } from "@/components/topic/diagrams";
+import { ListsTablesPlayground } from "@/components/topic/phase1-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
 
 export default function ListsTables() {
@@ -11,6 +12,8 @@ export default function ListsTables() {
         same set of labeled attributes.&quot; Picking the wrong one isn&apos;t just a style choice — it changes how
         screen readers announce the content and whether the structure even makes sense without the visual styling.
       </P>
+
+      <ListsTablesPlayground />
 
       <H2>1. Unordered vs ordered lists</H2>
       <CodeBlock

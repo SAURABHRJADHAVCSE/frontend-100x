@@ -1,5 +1,6 @@
 import { CodeBlock } from "@/components/topic/code-block";
 import { ResponsiveImageDiagram } from "@/components/topic/diagrams";
+import { LinksImagesPlayground } from "@/components/topic/phase1-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
 
 export default function LinksImages() {
@@ -11,6 +12,8 @@ export default function LinksImages() {
         directly in the flow of a page. Both look simple on the surface, and both have real depth once you get past
         the basics — depth that directly affects performance, accessibility, and SEO.
       </P>
+
+      <LinksImagesPlayground />
 
       <H2>1. The anchor tag — more than href</H2>
       <CodeBlock

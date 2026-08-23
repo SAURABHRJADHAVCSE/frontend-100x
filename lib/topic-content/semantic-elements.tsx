@@ -1,5 +1,6 @@
 import { CodeBlock } from "@/components/topic/code-block";
 import { SemanticLayoutDiagram } from "@/components/topic/diagrams";
+import { SemanticLandmarksPlayground } from "@/components/topic/phase1-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
 
 export default function SemanticElements() {
@@ -13,6 +14,8 @@ export default function SemanticElements() {
         describe what content <em>means</em>, not just how it should look — and it&apos;s one of the highest-leverage
         habits a frontend developer can build.
       </P>
+
+      <SemanticLandmarksPlayground />
 
       <H2>1. Why semantics matter more than they look like they should</H2>
       <UL>

@@ -1,5 +1,6 @@
 import { CodeBlock } from "@/components/topic/code-block";
 import { StepFlowDiagram } from "@/components/topic/diagrams";
+import { MultimediaPlayground } from "@/components/topic/phase1-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
 
 export default function MultimediaElements() {
@@ -11,6 +12,8 @@ export default function MultimediaElements() {
         elements for video, audio, and embedded content, meaning the browser itself handles playback, keyboard
         controls, and accessibility, with zero plugins and zero extra software.
       </P>
+
+      <MultimediaPlayground />
 
       <H2>1. Video — native, controllable, accessible</H2>
       <CodeBlock

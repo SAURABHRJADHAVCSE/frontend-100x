@@ -1,5 +1,6 @@
 import { CodeBlock } from "@/components/topic/code-block";
 import { ClientServerDiagram, DnsLookupDiagram, PacketSwitchingDiagram } from "@/components/topic/diagrams";
+import { InternetSimulator } from "@/components/topic/phase0-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
 
 export default function HowTheInternetWorks() {
@@ -13,6 +14,8 @@ export default function HowTheInternetWorks() {
         laptop in Mumbai can reach a server in Virginia and back before you finish blinking. Everything you&apos;ve
         ever done online is built on top of that one idea: agreed-upon rules for passing tiny chunks of data around.
       </P>
+
+      <InternetSimulator />
 
       <H2>0. The internet is not &quot;the web&quot;</H2>
       <P>

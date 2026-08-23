@@ -1,4 +1,5 @@
 import { CodeBlock } from "@/components/topic/code-block";
+import { TypographyElementsPlayground } from "@/components/topic/phase1-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
 
 export default function TextTypographyElements() {
@@ -9,6 +10,8 @@ export default function TextTypographyElements() {
         isn&apos;t about decoration — each one carries real meaning that browsers, search engines, and assistive
         technology all read and act on differently.
       </P>
+
+      <TypographyElementsPlayground />
 
       <H2>1. Paragraphs and headings — the backbone</H2>
       <CodeBlock

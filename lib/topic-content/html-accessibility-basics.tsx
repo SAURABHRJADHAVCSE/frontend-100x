@@ -1,5 +1,6 @@
 import { CodeBlock } from "@/components/topic/code-block";
 import { TabOrderDiagram } from "@/components/topic/diagrams";
+import { AccessibilityTreePlayground } from "@/components/topic/phase1-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
 
 export default function HtmlAccessibilityBasics() {
@@ -12,6 +13,8 @@ export default function HtmlAccessibilityBasics() {
         mostly a byproduct of writing the correct, semantic HTML you&apos;ve already been learning in this phase —
         plus a handful of specific, learnable techniques.
       </P>
+
+      <AccessibilityTreePlayground />
 
       <H2>1. The four principles, in plain English (WCAG&apos;s POUR)</H2>
       <UL>
