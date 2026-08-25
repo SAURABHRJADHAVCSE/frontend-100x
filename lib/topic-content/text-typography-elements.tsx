@@ -1,6 +1,7 @@
 import { CodeBlock } from "@/components/topic/code-block";
 import { TypographyElementsPlayground } from "@/components/topic/phase1-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
+import { InterviewQuestions } from "@/components/topic/interview-questions";
 
 export default function TextTypographyElements() {
   return (
@@ -125,6 +126,61 @@ export default function TextTypographyElements() {
         <li>Format a short code snippet using a proper <Code>{"<pre><code>"}</Code> pairing.</li>
         <li>Add a blockquote citing a real source using the <Code>cite</Code> attribute.</li>
       </OL>
+
+      <InterviewQuestions questions={TEXT_TYPO_QUESTIONS} />
     </div>
   );
 }
+
+const TEXT_TYPO_QUESTIONS = [
+  {
+    question: "What is the difference between <pre> and <code> tags?",
+    answer: "The <code> element is an inline tag used to mark up a short piece of computer code. The <pre> (preformatted text) element is a block tag that preserves all whitespace, tabs, and line breaks exactly as typed in source code. They are typically nested as <pre><code>...</code></pre> for multi-line code blocks.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the difference between <blockquote> and <q>?",
+    answer: "- <blockquote>: Used for long, multi-line quotations that are rendered as a separate indented block-level box.\n- <q>: Used for short inline quotes that automatically inserts quotation marks surrounding the text depending on language locale.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "How does <abbr> work and why is the title attribute used with it?",
+    answer: "The <abbr> element represents an abbreviation or acronym (e.g. <abbr title=\"HyperText Markup Language\">HTML</abbr>). The 'title' attribute provides the full expanded text, which appears as a tooltip on hover and is announced by screen readers.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the <time> element and why is the datetime attribute important?",
+    answer: "The <time> element represents dates or times. The 'datetime' attribute provides a machine-readable ISO 8601 format (e.g. <time datetime=\"2026-08-24T21:00\">Aug 24</time>), allowing search engines, calendar apps, and screen readers to parse dates accurately regardless of display format.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is the difference between <sub> and <sup>?",
+    answer: "- <sub>: Renders text as a subscript (lowered, smaller font, e.g. H<sub>2</sub>O for chemical formulas).\n- <sup>: Renders text as a superscript (raised, smaller font, e.g. E = mc<sup>2</sup> for math exponents or footnote numbers).",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is <mark> element used for?",
+    answer: "The <mark> element represents text highlighted for reference or notation purposes due to its relevance in another context (e.g. highlighting search term matches in query results). Browsers style it with yellow background by default.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the <bdi> element and when should it be used?",
+    answer: "<bdi> (Bi-Directional Isolation) isolates a span of text that might formatted in a different direction (e.g., right-to-left Arabic or Hebrew) from surrounding left-to-right text, preventing bi-directional formatting corruption when displaying user-generated names.",
+    difficulty: "Advanced" as const,
+  },
+  {
+    question: "What is the difference between <br> and <wbr>?",
+    answer: "- <br>: Forces an immediate hard line break at that exact position.\n- <wbr> (Word Break Opportunity): Specifies a position where the browser MAY wrap the line if necessary inside very long unbroken words or URLs, but doesn't force a line break if there is enough space.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "Why shouldn't you skip heading levels (e.g., jump from <h1> straight to <h3>)?",
+    answer: "Heading levels (<h1> to <h6>) construct an automated document outline. Skipping levels breaks document hierarchy for screen reader users who navigate by heading level, making content structure confusing and damaging accessibility audit scores.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the difference between &nbsp; and standard space in HTML typography?",
+    answer: "&nbsp; is a Non-Breaking Space entity. It prevents browsers from automatically breaking a line between two words (e.g. '100&nbsp;MB' or 'Mr.&nbsp;Smith'), ensuring numbers and their units or titles remain on the same line.",
+    difficulty: "Intermediate" as const,
+  },
+];

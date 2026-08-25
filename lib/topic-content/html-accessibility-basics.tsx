@@ -2,6 +2,7 @@ import { CodeBlock } from "@/components/topic/code-block";
 import { TabOrderDiagram } from "@/components/topic/diagrams";
 import { AccessibilityTreePlayground } from "@/components/topic/phase1-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
+import { InterviewQuestions } from "@/components/topic/interview-questions";
 
 export default function HtmlAccessibilityBasics() {
   return (
@@ -140,6 +141,61 @@ export default function HtmlAccessibilityBasics() {
         <li>Find one icon-only button in a project and give it a proper <Code>aria-label</Code>.</li>
         <li>Add a skip link to a page with a long navigation menu.</li>
       </OL>
+
+      <InterviewQuestions questions={A11Y_QUESTIONS} />
     </div>
   );
 }
+
+const A11Y_QUESTIONS = [
+  {
+    question: "What does WCAG stand for and what are its 4 main POUR principles?",
+    answer: "WCAG stands for Web Content Accessibility Guidelines. Its 4 core principles are POUR:\n1. Perceivable: Information must be presentable to users in ways they can sense (visual, auditory, tactile).\n2. Operable: User interface components must be navigable and usable by keyboard.\n3. Understandable: Information and UI operation must be clear, predictable, and readable.\n4. Robust: Content must remain compatible across current and future assistive technologies.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is WAI-ARIA and when should you use it?",
+    answer: "WAI-ARIA (Web Accessibility Initiative - Accessible Rich Internet Applications) is a set of attributes (roles, states, properties) that extend HTML to express accessibility semantics for complex dynamic UI widgets (like modals, tabs, accordions) when native HTML elements are insufficient.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "Why is *:focus { outline: none; } considered a major accessibility violation?",
+    answer: "Removing the focus outline without providing a visible custom focus indicator makes the webpage completely unusable for keyboard users (who rely on Tab navigation), as they lose all visual indication of which element currently has focus.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is a Skip Link ('Skip to Main Content') and why is it used?",
+    answer: "A Skip Link is an anchor link placed at the very top of the HTML (visually hidden until focused) that lets keyboard and screen reader users bypass repetitive header navigation links and jump directly to the primary <main> content in one keystroke.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the minimum WCAG AA contrast ratio requirement for normal text?",
+    answer: "WCAG 2.1 AA requires a contrast ratio of at least 4.5:1 for normal text (under 18pt/24px) and at least 3:1 for large text (18pt+ or 14pt bold) against its background.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the difference between aria-label, aria-labelledby, and aria-describedby?",
+    answer: "- aria-label: Provides a direct text string label when no visible text exists (e.g. <button aria-label=\"Close dialog\">X</button>).\n- aria-labelledby: Points to the ID of ANOTHER visible DOM element to use as its accessible name.\n- aria-describedby: Points to the ID of an element providing additional description or helper text.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is aria-live and what is the difference between aria-live=\"polite\" and aria-live=\"assertive\"?",
+    answer: "aria-live creates a live region that screen readers automatically announce when its content changes dynamically:\n- polite: Waits until the screen reader finishes speaking its current sentence before announcing the update (used for status messages/toasts).\n- assertive: Immediately interrupts the screen reader to announce the update (used for critical system alerts/errors).",
+    difficulty: "Advanced" as const,
+  },
+  {
+    question: "What does tabindex=\"0\" vs tabindex=\"-1\" vs tabindex=\"1\" do?",
+    answer: "- tabindex=\"0\": Inserts an element into natural keyboard tab order based on DOM position.\n- tabindex=\"-1\": Makes an element programmatically focusable via JS ('element.focus()'), but removes it from keyboard tab order.\n- tabindex=\">0\": Forces a custom tab order (CONSIDERED AN ANTI-PATTERN because it disrupts logical DOM tab sequence).",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "Why shouldn't color be used as the sole indicator of information?",
+    answer: "Using color alone (e.g., 'fields in red are required' or green/red status dots) excludes users with color blindness (protanopia, deuteranopia). Always pair color with text labels, icons, or patterns.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What automated and manual tools should you use to test web accessibility?",
+    answer: "Use automated testing tools (axe DevTools, Lighthouse, WAVE) to catch 40-50% of structural errors (missing alt, low contrast). Combine with manual keyboard navigation testing (Tab/Enter/Space) and real screen reader testing (VoiceOver on macOS/iOS, NVDA/JAWS on Windows).",
+    difficulty: "Intermediate" as const,
+  },
+];

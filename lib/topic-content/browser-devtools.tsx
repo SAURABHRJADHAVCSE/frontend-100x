@@ -2,6 +2,7 @@ import { CodeBlock } from "@/components/topic/code-block";
 import { StepFlowDiagram } from "@/components/topic/diagrams";
 import { DevtoolsInspectorPlayground } from "@/components/topic/phase0-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
+import { InterviewQuestions } from "@/components/topic/interview-questions";
 
 export default function BrowserDevtools() {
   return (
@@ -129,6 +130,61 @@ export default function BrowserDevtools() {
           on the page.
         </li>
       </OL>
+
+      <InterviewQuestions questions={DEVTOOLS_QUESTIONS} />
     </div>
   );
 }
+
+const DEVTOOLS_QUESTIONS = [
+  {
+    question: "What are Browser DevTools and what are their core primary panels?",
+    answer: "Browser DevTools are built-in web authoring and debugging tools. Core panels include:\n- Elements: Inspect/edit DOM tree and CSS styles live.\n- Console: View errors, run JS, inspect logs.\n- Network: Monitor network requests, timing, headers, payloads.\n- Application: Manage LocalStorage, Cookies, SessionStorage, Service Workers.\n- Performance: Record and analyze CPU, rendering, and layout bottlenecks.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "How do you debug layout shifts or CSS specificity issues in the Elements panel?",
+    answer: "In the Elements panel, inspect the target element to see the 'Styles' pane which lists all active/overridden rules ordered by specificity. Use the 'Computed' tab to see final calculated pixel values and box model, or use the Layout tab to inspect Flexbox and CSS Grid overlays.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "How do you simulate slow mobile network speeds and offline states in DevTools?",
+    answer: "In the Network panel, use the 'Throttling' dropdown menu to select preset speeds like 'Fast 3G', 'Slow 3G', or 'Offline'. This simulates network latency and bandwidth constraints to test loading spinners and offline fallbacks.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the difference between console.log(), console.dir(), console.table(), and console.trace()?",
+    answer: "- console.log(): Standard formatted text/object output.\n- console.dir(): Displays an interactive tree view of JavaScript object properties.\n- console.table(): Renders arrays or objects as a clean visual tabular grid.\n- console.trace(): Prints an explicit stack trace of function calls leading to that point.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "How do DOM Breakpoints work in DevTools?",
+    answer: "Right-clicking any element in the Elements panel allows you to set a DOM Breakpoint on 'Subtree modifications', 'Attribute modifications', or 'Node removal'. Execution will pause immediately when JavaScript code attempts to mutate that DOM node.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is Lighthouse in Chrome DevTools?",
+    answer: "Lighthouse is an automated open-source auditing tool built into DevTools. It evaluates a web page across 5 key metrics: Performance (Core Web Vitals), Accessibility, Best Practices, SEO, and Progressive Web App compliance, generating actionable optimization reports.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "How do you inspect and clear LocalStorage or Cookies in DevTools?",
+    answer: "Navigate to the 'Application' (or Storage) panel. Under the 'Storage' menu on the left sidebar, expand 'Local Storage', 'Session Storage', or 'Cookies' to view, search, edit key-value pairs, or click the clear button to delete data.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What are Memory Leaks and how do you find them using DevTools Memory panel?",
+    answer: "A memory leak occurs when unneeded objects remain referenced in memory so JavaScript garbage collection cannot clean them up. Use the Memory panel to take 'Heap Snapshots' before and after actions, comparing retainers to find un-removed event listeners or global references.",
+    difficulty: "Advanced" as const,
+  },
+  {
+    question: "What is the Snippets feature in DevTools Sources panel?",
+    answer: "Snippets are reusable JavaScript scripts that you can save and run inside DevTools on any webpage. They are useful for bookmarklets, custom web scraping, or audit utility scripts.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "How do you inspect layout thrashing and long tasks in the Performance panel?",
+    answer: "Start a recording in the Performance panel and perform page interactions. Look for red corner indicators on long tasks (tasks taking > 50ms blocking the main thread) and examine the Main thread flame chart to identify heavy JavaScript execution or forced synchronous layouts (layout thrashing).",
+    difficulty: "Advanced" as const,
+  },
+];

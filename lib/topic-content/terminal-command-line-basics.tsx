@@ -2,6 +2,7 @@ import { CodeBlock } from "@/components/topic/code-block";
 import { CommandAnatomyDiagram, ShellStackDiagram } from "@/components/topic/diagrams";
 import { TerminalSimulator } from "@/components/topic/phase0-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
+import { InterviewQuestions } from "@/components/topic/interview-questions";
 
 export default function TerminalCommandLineBasics() {
   return (
@@ -210,6 +211,61 @@ export default function TerminalCommandLineBasics() {
           <Code>ll</Code> shortcut.
         </li>
       </OL>
+
+      <InterviewQuestions questions={TERMINAL_QUESTIONS} />
     </div>
   );
 }
+
+const TERMINAL_QUESTIONS = [
+  {
+    question: "What is the difference between CLI, GUI, Terminal, and Shell?",
+    answer: "A GUI (Graphical User Interface) uses visual icons/windows. A CLI (Command Line Interface) is text-based interaction. A Terminal is the wrapper application window (e.g. iTerm2, Windows Terminal, VS Code integrated terminal) that receives keystrokes and displays text. A Shell (e.g. Bash, Zsh, PowerShell) is the underlying program that interprets your text commands and communicates with the OS kernel.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "How do absolute paths differ from relative paths?",
+    answer: "An Absolute path specifies a location starting from the root directory of the file system (e.g., '/Users/alex/project/index.html' or 'C:\\Projects\\app'). A Relative path specifies a location relative to your current working directory (e.g., './images/logo.png' or '../components/Header').",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the difference between > and >> operators in the terminal?",
+    answer: "The '>' operator redirects output to a file, completely OVERWRITING its previous contents (e.g. 'echo hello > log.txt'). The '>>' operator redirects output by APPENDING new text to the end of the existing file without overwriting.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is a pipe (|) operator in Unix/Linux CLI?",
+    answer: "The pipe '|' operator takes the standard output (stdout) of the command on its left and passes it as the standard input (stdin) to the command on its right, allowing commands to be chained together (e.g. 'cat server.log | grep ERROR | wc -l').",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "How do you inspect running processes and terminate a frozen process via CLI?",
+    answer: "You can view running processes with 'ps aux' or 'top'/'htop'. To stop a process, find its PID (Process ID) and send a termination signal using 'kill <PID>' or force-stop with 'kill -9 <PID>'.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "Explain Unix file permissions notation (e.g., -rwxr-xr-- or 755).",
+    answer: "Permissions are split into 3 triads: Owner, Group, and Others. Letters stand for Read (r=4), Write (w=2), Execute (x=1). 755 means Owner has full access (4+2+1=7), Group has read & execute (4+1=5), and Others have read & execute (4+1=5).",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is PATH environment variable and why is it important?",
+    answer: "The PATH environment variable is a colon-separated (or semicolon-separated on Windows) list of directory paths that the shell searches through whenever you type an executable command (like 'node', 'git', or 'npm'). If a tool isn't in PATH, the terminal returns 'command not found'.",
+    difficulty: "Advanced" as const,
+  },
+  {
+    question: "What does the sudo command do and what are its security risks?",
+    answer: "Sudo (Superuser Do) executes a command with root/administrator privileges. Running commands with sudo grants unrestricted access to system files, which can accidentally overwrite critical system configs or allow malicious scripts to damage the OS if used carelessly.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is the difference between SIGINT (Ctrl+C) and SIGTSTP (Ctrl+Z)?",
+    answer: "SIGINT (Ctrl+C) requests the running process to interrupt and terminate immediately. SIGTSTP (Ctrl+Z) suspends/pauses the process and sends it to the background, allowing you to resume it later with 'fg' (foreground) or 'bg' (background).",
+    difficulty: "Advanced" as const,
+  },
+  {
+    question: "How do you create a shell alias and make it permanent?",
+    answer: "An alias creates a shortcut for a long command (e.g. 'alias gcm=\"git commit -m\"'). To make it permanent, add the alias definition line to your shell configuration file (~/.zshrc for Zsh or ~/.bashrc for Bash) and reload it with 'source ~/.zshrc'.",
+    difficulty: "Basic" as const,
+  },
+];

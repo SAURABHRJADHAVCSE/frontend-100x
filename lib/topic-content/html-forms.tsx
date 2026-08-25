@@ -2,6 +2,7 @@ import { CodeBlock } from "@/components/topic/code-block";
 import { StepFlowDiagram } from "@/components/topic/diagrams";
 import { HtmlFormsPlayground } from "@/components/topic/phase1-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
+import { InterviewQuestions } from "@/components/topic/interview-questions";
 
 export default function HtmlForms() {
   return (
@@ -211,6 +212,61 @@ form.addEventListener('submit', async (e) => {
         <li>Use <Code>enctype=&quot;multipart/form-data&quot;</Code> for file upload forms.</li>
         <li>Leverage native HTML5 input types for free mobile keypads and validation.</li>
       </OL>
+
+      <InterviewQuestions questions={FORMS_QUESTIONS} />
     </div>
   );
 }
+
+const FORMS_QUESTIONS = [
+  {
+    question: "Why must every form input be explicitly associated with a <label> element?",
+    answer: "Associating <label for=\"id\"> with <input id=\"id\"> is critical for 3 reasons:\n1. Accessibility: Screen readers announce the label text when the input receives focus.\n2. Click Target: Clicking the label focuses or checks the associated input (enlarging tap targets for radio/checkboxes).\n3. UX: Improves form clarity for all users.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the difference between GET and POST methods in HTML forms?",
+    answer: "- GET: Appends form data directly to the URL as query parameters (?name=val). Limited data size, insecure for sensitive data, but bookmarkable/cacheable (used for Search forms).\n- POST: Sends form data inside the HTTP request body. Supports large data/file uploads and does not expose data in URL parameters (used for Authentication and Data Mutations).",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "Why is the name attribute mandatory on form input fields?",
+    answer: "The 'name' attribute defines the key under which the input's value is packaged in HTTP request payloads and JavaScript 'FormData' objects. Without a 'name' attribute, the input's data is completely omitted during form submission.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the default type of a <button> inside a <form> and why is it a common gotcha?",
+    answer: "Inside a <form>, a <button> defaults to type=\"submit\"! If a developer adds a button for opening a modal without specifying type=\"button\", clicking it will inadvertently trigger form submission, validation checks, and page reload.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "When must you use enctype=\"multipart/form-data\" on a form?",
+    answer: "You MUST use enctype=\"multipart/form-data\" whenever a form contains a file input (<input type=\"file\">). Standard 'application/x-www-form-urlencoded' encoding only sends text strings, destroying binary file data.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is the HTML5 FormData API in JavaScript?",
+    answer: "The FormData API automatically compiles all named input fields from an HTML form into a set of key-value pairs ('new FormData(form)'), allowing easy transmission via fetch() without manually harvesting input values.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is the difference between readonly and disabled attributes on form inputs?",
+    answer: "- readonly: Prevents editing text, but the input is still focusable, copyable, and ITS VALUE IS SUBMITTED with the form.\n- disabled: Prevents all user interaction, grays out the field, AND OMITS ITS VALUE from form submission.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the purpose of <fieldset> and <legend>?",
+    answer: "<fieldset> visually and semantically groups related form controls (e.g. Credit Card details or Shipping Address). <legend> specifies the caption header for the fieldset, which screen readers announce before each field in the set.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "How do HTML5 input types (email, tel, number, date) improve mobile UX?",
+    answer: "Specifying correct input types causes mobile operating systems (iOS/Android) to automatically display specialized virtual keyboards (e.g. numeric keypad for 'number' or email keyboard with '@' and '.com' keys for 'email').",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the difference between CSS :invalid and :user-invalid pseudo-classes?",
+    answer: "':invalid' matches an invalid input immediately on page load before the user has touched it (causing premature red borders). ':user-invalid' matches only AFTER the user has interacted with the input and moved away (providing clean UX validation).",
+    difficulty: "Advanced" as const,
+  },
+];

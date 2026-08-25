@@ -2,6 +2,60 @@ import { CodeBlock } from "@/components/topic/code-block";
 import { BranchGraphDiagram, StepFlowDiagram } from "@/components/topic/diagrams";
 import { GitVisualizerPlayground } from "@/components/topic/phase0-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
+import { InterviewQuestions } from "@/components/topic/interview-questions";
+
+const GIT_QUESTIONS = [
+  {
+    question: "What is Git and how does it differ from a centralized VCS like SVN?",
+    answer: "Git is a Distributed Version Control System (DVCS). Unlike centralized VCS (like SVN) where developers rely on a single central server for project history, Git gives every developer a full copy of the entire repository and history locally. This enables offline work, faster operations, and safe branching.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "Explain the three main states in Git: Working Directory, Staging Area, and Repository.",
+    answer: "1. Working Directory: The local folder on your filesystem where you edit files.\n2. Staging Area (Index): A preview area where you stage specific modified files using 'git add' before committing.\n3. Repository (.git folder): The database containing all committed snapshots and version history permanently.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the difference between git reset and git revert?",
+    answer: "'git reset' rewrites history by moving the HEAD pointer back to an earlier commit (dangerous if shared on remote). 'git revert' creates a NEW commit that undoes the changes of a previous commit without deleting history, making it safe for public/shared branches.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is the difference between git merge and git rebase?",
+    answer: "'git merge' combines two branches by creating a new 'merge commit', preserving the true chronological history of both branches. 'git rebase' rewrites history by moving/replaying your feature branch commits onto the tip of the target branch, creating a clean, linear history.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is a merge conflict and how do you resolve it?",
+    answer: "A merge conflict occurs when Git cannot automatically reconcile different changes made to the same lines of a file in two merging branches. To resolve it:\n1. Open conflicting files containing '<<<<<<<', '=======', '>>>>>>>'.\n2. Edit the file to keep desired code.\n3. Run 'git add <file>' to mark as resolved.\n4. Complete with 'git commit'.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What does git stash do and when would you use it?",
+    answer: "'git stash' temporarily saves ('shelves') your dirty uncommitted working directory changes into a stack without committing, giving you a clean working copy. Use it when you need to switch branches urgently to fix a bug before finishing your current task. Run 'git stash pop' to restore your changes later.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is HEAD in Git?",
+    answer: "HEAD is a pointer that references the currently active checkout commit/branch in your working directory. Usually, HEAD points to the tip of your current branch (e.g., 'refs/heads/main'). In a 'detached HEAD' state, HEAD points directly to a specific commit hash rather than a branch name.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is git cherry-pick?",
+    answer: "'git cherry-pick <commit-hash>' applies the exact changes introduced by a specific existing commit from another branch onto your current branch as a new commit, without merging the whole branch.",
+    difficulty: "Advanced" as const,
+  },
+  {
+    question: "What is .gitignore and why is it essential?",
+    answer: ".gitignore is a text file that tells Git which files or directories to intentionally ignore and exclude from version tracking. It prevents committing large dependency folders ('node_modules/'), environment secrets ('.env'), build outputs ('dist/'), and OS cache ('.DS_Store').",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "How does git reflog work and how can it save your code?",
+    answer: "Git reflog (Reference Log) tracks every single update made to the HEAD pointer in your local repository (including deleted commits, resets, or lost rebase states). Even if you accidentally run 'git reset --hard', you can use 'git reflog' to find the lost commit hash and restore it with 'git reset --hard <hash>'.",
+    difficulty: "Advanced" as const,
+  },
+];
 
 export default function GitFundamentals() {
   return (
@@ -179,6 +233,8 @@ export default function GitFundamentals() {
         </li>
         <li>Run <Code>git log --oneline</Code> and see your first entry in the project&apos;s history.</li>
       </OL>
+
+      <InterviewQuestions questions={GIT_QUESTIONS} />
     </div>
   );
 }

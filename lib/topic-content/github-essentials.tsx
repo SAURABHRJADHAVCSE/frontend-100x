@@ -2,6 +2,7 @@ import { CodeBlock } from "@/components/topic/code-block";
 import { StepFlowDiagram } from "@/components/topic/diagrams";
 import { GithubFlowPlayground } from "@/components/topic/phase0-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P } from "@/components/topic/prose";
+import { InterviewQuestions } from "@/components/topic/interview-questions";
 
 export default function GithubEssentials() {
   return (
@@ -127,6 +128,61 @@ export default function GithubEssentials() {
           pull request.
         </li>
       </OL>
+
+      <InterviewQuestions questions={GITHUB_QUESTIONS} />
     </div>
   );
 }
+
+const GITHUB_QUESTIONS = [
+  {
+    question: "What is GitHub and how does it differ from Git?",
+    answer: "Git is an open-source command-line tool for local version control. GitHub is a cloud-based hosting service and platform built around Git that provides code collaboration, pull requests, issue tracking, CI/CD (GitHub Actions), and user permissions.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is a Pull Request (PR) and how does the review process work?",
+    answer: "A Pull Request is a request to merge code from a topic/feature branch into a target branch (like 'main'). It provides a diff view for team members to review code, leave comments, request changes, run automated CI checks, and finally approve and merge.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the difference between Forking and Branching on GitHub?",
+    answer: "Branching creates an isolated pointer within the SAME repository (used for internal team collaboration). Forking creates a complete personal COPY of someone else's entire repository under your own GitHub account (used for open-source contributions without needing write access to the original repo).",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What are GitHub Actions and what are they used for?",
+    answer: "GitHub Actions is a built-in CI/CD (Continuous Integration & Continuous Deployment) platform that automates software workflows. It automatically runs tests, linters, builds, and deploys applications directly from GitHub upon events like 'git push' or opening a PR.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is the difference between SSH keys and Personal Access Tokens (PAT) for GitHub authentication?",
+    answer: "SSH keys use asymmetric cryptography (public/private keypair) configured once on your machine for frictionless Git pushes without typing passwords. Personal Access Tokens (PATs) act as granular passwords used for HTTPS Git operations or API integrations with expiration dates and specific scope permissions.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "How do GitHub Issues and Projects help in Agile/Scrum development?",
+    answer: "GitHub Issues track bugs, tasks, and feature requests. GitHub Projects provides Kanban boards and roadmaps where issues can be moved through columns ('To Do', 'In Progress', 'Done') for Agile sprint planning and team project tracking.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is a protected branch in GitHub?",
+    answer: "A protected branch enforces security rules on key branches (like 'main' or 'production'). Rules can require passing CI build checks, requiring 1+ code reviews from designated CODEOWNERS, and preventing force pushes ('git push --force') or branch deletion.",
+    difficulty: "Advanced" as const,
+  },
+  {
+    question: "What is squash merging vs standard merge on GitHub?",
+    answer: "A standard merge preserves all individual commits from the feature branch. A squash merge combines ('squashes') all commits from a PR into a single clean commit on the target branch, keeping the main branch commit log tidy.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is CODEOWNERS file in a GitHub repository?",
+    answer: "A CODEOWNERS file defines individuals or teams responsible for specific files or directories in a repository. When a PR modifies those files, GitHub automatically assigns the specified code owners as required reviewers.",
+    difficulty: "Advanced" as const,
+  },
+  {
+    question: "How do GitHub Releases and Tags work?",
+    answer: "Git tags create immutable markers at specific commits in history (e.g. 'v1.0.0'). GitHub Releases package those tags with release notes, changelogs, and compiled binary/zip assets for end-user distribution.",
+    difficulty: "Basic" as const,
+  },
+];

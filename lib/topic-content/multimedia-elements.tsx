@@ -2,6 +2,7 @@ import { CodeBlock } from "@/components/topic/code-block";
 import { StepFlowDiagram } from "@/components/topic/diagrams";
 import { MultimediaPlayground } from "@/components/topic/phase1-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
+import { InterviewQuestions } from "@/components/topic/interview-questions";
 
 export default function MultimediaElements() {
   return (
@@ -113,6 +114,61 @@ export default function MultimediaElements() {
           <Code>loading=&quot;lazy&quot;</Code>.
         </li>
       </OL>
+
+      <InterviewQuestions questions={MULTIMEDIA_QUESTIONS} />
     </div>
   );
 }
+
+const MULTIMEDIA_QUESTIONS = [
+  {
+    question: "What is the difference between <video> and <iframe> for playing video content?",
+    answer: "- <video>: Uses native HTML5 browser media controls to stream video files (MP4/WebM) hosted on your server or CDN directly.\n- <iframe>: Embeds an entire external web page (e.g. YouTube or Vimeo player widget) containing its own complex player controls, analytics, and third-party scripts.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "Why should you use multiple <source> elements inside <video> and <audio>?",
+    answer: "Different browsers support different media codecs and formats (e.g., MP4/H.264, WebM/VP9, Ogg). Providing multiple <source> elements (e.g. <source src=\"video.webm\" type=\"video/webm\">) allows the browser to automatically select and play the first codec format it natively supports.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "Why is the autoplay attribute restricted on modern browsers?",
+    answer: "Modern browsers (Chrome, Safari, Firefox) block audio/video autoplay with sound to protect user experience and prevent data consumption on mobile devices. Autoplay is only permitted if the media is explicitly muted via the 'muted' attribute.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is the <track> element and WebVTT format?",
+    answer: "The <track> element is used inside <video> or <audio> to attach timed text tracks (subtitles, captions, audio descriptions). Captions are formatted in WebVTT (.vtt) files containing timestamps and text strings.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What does the poster attribute on a <video> element do?",
+    answer: "The 'poster' attribute specifies an image URL to display while the video is downloading or until the user clicks the play button, preventing a blank black box before playback.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "Why is the title attribute mandatory on <iframe> elements?",
+    answer: "The 'title' attribute provides an accessible description of the iframe's embedded content (e.g. <iframe title=\"Interactive Google Map of Mumbai Office\">), allowing screen readers to inform users what the frame contains before they navigate into it.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the sandbox attribute on an <iframe> and why is it crucial for security?",
+    answer: "The 'sandbox' attribute enables an extra set of security restrictions on the embedded iframe content (blocking script execution, form submission, popups, or same-origin cookie access). Specifying sandbox=\"\" blocks all capabilities unless explicitly re-enabled (e.g. sandbox=\"allow-scripts\").",
+    difficulty: "Advanced" as const,
+  },
+  {
+    question: "How do preload attribute options (none, metadata, auto) affect video performance?",
+    answer: "- preload=\"none\": Browser downloads zero video data until user clicks play (saves maximum bandwidth).\n- preload=\"metadata\": Browser downloads only metadata (duration, aspect ratio, audio track count).\n- preload=\"auto\": Browser downloads the full video file immediately on page load.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is the difference between captions and subtitles in <track> kind attribute?",
+    answer: "- kind=\"subtitles\": Translations of spoken dialogue for viewers who do not understand the spoken language.\n- kind=\"captions\": Transcription of dialogue PLUS sound effects and speaker identification (e.g. '[music playing]') for deaf or hard-of-hearing viewers.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is the allow attribute on <iframe> tags?",
+    answer: "The 'allow' attribute specifies a Feature Policy / Permissions Policy string granting or restricting the iframe's access to hardware APIs (e.g. allow=\"camera; microphone; geolocation; fullscreen\").",
+    difficulty: "Advanced" as const,
+  },
+];

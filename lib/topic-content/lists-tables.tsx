@@ -2,6 +2,7 @@ import { CodeBlock } from "@/components/topic/code-block";
 import { TableAnatomyDiagram } from "@/components/topic/diagrams";
 import { ListsTablesPlayground } from "@/components/topic/phase1-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
+import { InterviewQuestions } from "@/components/topic/interview-questions";
 
 export default function ListsTables() {
   return (
@@ -111,6 +112,61 @@ export default function ListsTables() {
         </li>
         <li>Turn a glossary of 3 terms into a proper <Code>{"<dl>"}</Code>.</li>
       </OL>
+
+      <InterviewQuestions questions={LISTS_TABLES_QUESTIONS} />
     </div>
   );
 }
+
+const LISTS_TABLES_QUESTIONS = [
+  {
+    question: "What is the difference between <ul>, <ol>, and <dl>?",
+    answer: "- <ul> (Unordered List): Bulleted list where item sequence order does not matter.\n- <ol> (Ordered List): Numbered list where item sequence order is crucial (e.g. recipe steps or rankings).\n- <dl> (Description List): Key-value pair list containing term <dt> and description <dd> (e.g. metadata or glossaries).",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "Why should <th> elements always include the scope attribute?",
+    answer: "The 'scope' attribute (scope=\"col\" or scope=\"row\") explicitly tells screen readers whether a header cell relates to the entire column below it or row next to it, making complex data tables readable for visually impaired users.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the purpose of <thead>, <tbody>, and <tfoot> in HTML tables?",
+    answer: "They semantically divide a table into structural sections:\n- <thead>: Wraps column header rows.\n- <tbody>: Wraps primary data rows.\n- <tfoot>: Wraps summary rows (totals, page averages, footnotes). When printing long tables across pages, browsers can repeat <thead> and <tfoot> headers automatically.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the difference between colspan and rowspan attributes?",
+    answer: "- colspan=\"N\": Spans a single <td> or <th> across N horizontal columns.\n- rowspan=\"N\": Spans a single <td> or <th> across N vertical rows.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "Why is <table> for page layout considered a major anti-pattern?",
+    answer: "Using <table> for multi-column page layout destroys accessibility for screen readers (which read table cells out of natural visual flow), breaks responsiveness on mobile screens, and dramatically inflates DOM size.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the <caption> element in HTML tables?",
+    answer: "The <caption> tag provides an accessible title or summary for the table. It must be placed as the very first child immediately inside the <table> tag.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What direct child elements are valid inside a <ul> or <ol>?",
+    answer: "Only <li> (list item) elements are valid direct children of <ul> and <ol>. Other tags like <div> or <p> must be placed INSIDE an <li> item, not directly under <ul>/ol>.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "How do you style list markers without destroying list accessibility?",
+    answer: "Using CSS 'list-style: none' can sometimes cause Safari VoiceOver screen readers to stop announcing list items as lists. To fix this safely, maintain semantic <ul>/<li> structure or add role=\"list\" / role=\"listitem\" if list-style is removed.",
+    difficulty: "Advanced" as const,
+  },
+  {
+    question: "What is the reversed attribute on an <ol>?",
+    answer: "The boolean 'reversed' attribute on an <ol> causes list item numbers to count down in descending order (e.g. 5, 4, 3, 2, 1) instead of ascending order.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "How does <dl> differ from standard key-value objects in HTML?",
+    answer: "In a <dl>, multiple <dt> (terms) can share a single <dd> (description), or a single <dt> can have multiple <dd> elements, representing complex one-to-many relationship structures.",
+    difficulty: "Intermediate" as const,
+  },
+];

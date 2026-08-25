@@ -2,6 +2,7 @@ import { CodeBlock } from "@/components/topic/code-block";
 import { ResponsiveImageDiagram } from "@/components/topic/diagrams";
 import { LinksImagesPlayground } from "@/components/topic/phase1-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
+import { InterviewQuestions } from "@/components/topic/interview-questions";
 
 export default function LinksImages() {
   return (
@@ -135,6 +136,61 @@ export default function LinksImages() {
         <li>Open DevTools&apos; Network tab, then add <Code>loading=&quot;lazy&quot;</Code> to an image far down the page and watch when it actually downloads.</li>
         <li>Turn an external link into a safely-opening new tab using the correct rel attribute.</li>
       </OL>
+
+      <InterviewQuestions questions={LINKS_IMAGES_QUESTIONS} />
     </div>
   );
 }
+
+const LINKS_IMAGES_QUESTIONS = [
+  {
+    question: "Why must target=\"_blank\" links always include rel=\"noopener noreferrer\"?",
+    answer: "Opening a link with target=\"_blank\" without 'rel=\"noopener\"' creates a security vulnerability (tabnabbing) where the newly opened window can access and manipulate the original window via 'window.opener.location'. 'noreferrer' also prevents sending the HTTP referrer header.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "Why is the alt attribute essential on <img> tags?",
+    answer: "The 'alt' (alternative text) attribute is critical for 3 reasons:\n1. Accessibility: Screen readers read alt text aloud to visually impaired users.\n2. Fallback: Displayed if the image fails to load due to network errors.\n3. SEO: Search engine crawlers index alt text to understand image context.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "When should an <img> tag have an empty alt=\"\" attribute?",
+    answer: "An empty alt attribute (alt=\"\") should be used on purely DECORATIVE images (like background flourishes or decorative divider icons). It signals screen readers to skip the image silently rather than reading out the full filename path.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "Why should you always specify explicit width and height attributes on <img> tags?",
+    answer: "Providing explicit 'width' and 'height' attributes allows the browser to calculate the image's aspect ratio and reserve layout space BEFORE the image file downloads. This eliminates Cumulative Layout Shift (CLS), preventing page content from jumping abruptly.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "How does the srcset attribute differ from src on <img> tags?",
+    answer: "'src' specifies a single image URL fallback. 'srcset' allows providing a list of image file URLs paired with width descriptors (e.g. 'hero-small.jpg 400w, hero-large.jpg 1200w'), enabling the browser to automatically download the optimal image file based on device screen resolution (DPI/Retina).",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is the difference between <picture> and <img> with srcset?",
+    answer: "- <img> with srcset: Used when serving the SAME image at different resolutions or sizes.\n- <picture>: Used for ART DIRECTION (serving completely different image crops for mobile vs desktop) or offering modern image format fallbacks (AVIF -> WebP -> JPG).",
+    difficulty: "Advanced" as const,
+  },
+  {
+    question: "How does loading=\"lazy\" work on images?",
+    answer: "'loading=\"lazy\"' instructs the browser to defer downloading the image until the user scrolls close to its viewport location, saving network bandwidth. However, it should NEVER be used on above-the-fold hero images as it delays Largest Contentful Paint (LCP).",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What are WebP and AVIF formats compared to JPG and PNG?",
+    answer: "WebP and AVIF are modern web image compression formats. They provide significantly smaller file sizes (25-50% smaller) at higher visual quality than legacy JPG (lossy) and PNG (lossless) formats, supporting both transparency and animation.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "How do anchor links (#id) work for in-page navigation?",
+    answer: "An anchor tag with an href pointing to an element ID (e.g. <a href=\"#contact\">) scrolls the viewport directly to the DOM element with id=\"contact\".",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the download attribute on <a> tags?",
+    answer: "The 'download' attribute on an anchor link (e.g. <a href=\"report.pdf\" download>) prompts the browser to download the linked file instead of navigating to or opening it inside the browser tab.",
+    difficulty: "Basic" as const,
+  },
+];

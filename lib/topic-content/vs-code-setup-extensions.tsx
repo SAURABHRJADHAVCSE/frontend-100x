@@ -1,6 +1,7 @@
 import { CodeBlock } from "@/components/topic/code-block";
 import { VsCodeShortcutsStudio } from "@/components/topic/phase0-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
+import { InterviewQuestions } from "@/components/topic/interview-questions";
 
 export default function VsCodeSetupExtensions() {
   return (
@@ -135,6 +136,61 @@ export default function VsCodeSetupExtensions() {
           action.
         </li>
       </OL>
+
+      <InterviewQuestions questions={VSCODE_QUESTIONS} />
     </div>
   );
 }
+
+const VSCODE_QUESTIONS = [
+  {
+    question: "What is VS Code and how does its architecture differ from traditional heavy IDEs?",
+    answer: "VS Code (Visual Studio Code) is a lightweight code editor built on Electron (Node.js + Chromium). Unlike heavy, monolithic IDEs (like Visual Studio or WebStorm) that bundle full compilers and tooling out of the box, VS Code starts lightweight and expands capabilities on demand via extensions and Language Server Protocol (LSP).",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the Command Palette in VS Code and how do you open it?",
+    answer: "The Command Palette is the central hub to access all VS Code commands, settings, and extension actions without touching the mouse. Open it using 'Ctrl+Shift+P' (Windows/Linux) or 'Cmd+Shift+P' (macOS).",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the purpose of the .vscode/settings.json file in a project repository?",
+    answer: "A workspace '.vscode/settings.json' file configures project-specific editor settings (e.g. format on save, tab width, linter rules). Committing it to Git ensures all team members share the exact same editor behavior automatically.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is Prettier vs ESLint in a frontend VS Code workflow?",
+    answer: "Prettier is an opinionated code FORMATTER (handles indentation, quotes, semicolons, line length). ESLint is a code LINTER (analyzes code for potential runtime bugs, unused variables, anti-patterns, and security flaws). They are typically used together.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "How does Multi-Cursor editing work in VS Code?",
+    answer: "Multi-cursor editing allows you to type simultaneously in multiple places. Highlight a word and press 'Ctrl+D' (or 'Cmd+D') to select the next matching instance, or hold 'Alt' (or 'Option') and click anywhere to place additional independent cursors.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the Language Server Protocol (LSP)?",
+    answer: "LSP is an open protocol created by Microsoft that standardizes communication between code editors (like VS Code) and language smart engines (like TypeScript or Python). It provides autocomplete, go-to-definition, and refactoring without editor-specific extensions for every language.",
+    difficulty: "Advanced" as const,
+  },
+  {
+    question: "How do Breakpoints work in VS Code built-in Debugger?",
+    answer: "Breakpoints allow you to pause JavaScript/TypeScript execution at a specific line of code during runtime. When paused, you can step through execution line by line ('Step Over', 'Step Into'), inspect active scope variables, evaluate expressions in the Debug Console, and view the call stack.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is Dev Containers extension in VS Code?",
+    answer: "The Dev Containers extension allows you to use a Docker container as your full development environment. It configures tools, Node.js versions, and extensions inside a container, ensuring developers on Windows, macOS, or Linux develop in an identical environment.",
+    difficulty: "Advanced" as const,
+  },
+  {
+    question: "What is the difference between workspace settings and user settings in VS Code?",
+    answer: "User settings apply globally across all projects opened by your account. Workspace settings apply only to the specific open project folder and override global user settings.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is Emmet and how does it speed up HTML writing in VS Code?",
+    answer: "Emmet is a built-in expansion toolkit. It allows writing CSS-like shorthand abbreviations (e.g. 'div.container>ul>li*3') and pressing 'Tab' to instantly expand them into full HTML markup structures.",
+    difficulty: "Basic" as const,
+  },
+];

@@ -1,6 +1,7 @@
 import { CodeBlock } from "@/components/topic/code-block";
 import { ColorUnitsStudio } from "@/components/topic/css-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
+import { InterviewQuestions } from "@/components/topic/interview-questions";
 
 export default function ColorsUnitsValuesTopic() {
   return (
@@ -76,6 +77,61 @@ export default function ColorsUnitsValuesTopic() {
         <li>Adopt <Code>oklch()</Code> for clean color palettes and dark mode variants.</li>
         <li>Use dynamic viewport units (<Code>dvh</Code>) to prevent layout breaking on iOS Safari and mobile Chrome.</li>
       </OL>
+
+      <InterviewQuestions questions={COLORS_UNITS_QUESTIONS} />
     </div>
   );
 }
+
+const COLORS_UNITS_QUESTIONS = [
+  {
+    question: "What is the difference between rem and em units in CSS?",
+    answer: "- rem (root em): Relative ONLY to the font-size of the root <html> element (usually 16px). 1.5rem = 24px everywhere.\n- em: Relative to the font-size of its IMMEDIATE parent element. Nesting multiple em font-sizes causes compounding multiplication.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "Why should you use rem instead of px for typography and layout spacing?",
+    answer: "Using 'rem' respects user accessibility settings. If a visually impaired user increases their browser default font size (e.g. from 16px to 24px), all 'rem' values scale up proportionally. Fixed 'px' units ignore user settings.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the difference between 100vh and 100dvh on mobile browsers?",
+    answer: "Legacy '100vh' calculates height based on maximum screen height, ignoring dynamic mobile browser address bars (causing bottom content to get cut off). Modern '100dvh' (Dynamic Viewport Height) automatically resizes as address bars expand or collapse.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is OKLCH and why is it superior to RGB or HSL?",
+    answer: "OKLCH is a modern perceptual color space. Unlike RGB or HSL where changing hue causes unexpected lightness jumps (e.g. yellow feels much brighter than blue at the same lightness value), OKLCH offers perceptually uniform lightness across all hues, wider color gamuts (P3 screens), and smooth gradient blending.",
+    difficulty: "Advanced" as const,
+  },
+  {
+    question: "What is the difference between absolute units and relative units in CSS?",
+    answer: "- Absolute units (px, pt, cm, in): Fixed physical sizes that do not change based on screen size or parent container.\n- Relative units (rem, em, %, vw, vh, ch): Scales dynamically based on root font size, parent dimensions, or viewport size.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What does the ch unit represent in CSS typography?",
+    answer: "The 'ch' unit represents the width of the number zero ('0') character in the element's active font. It is commonly used to set optimal reading line lengths (e.g. 'max-width: 65ch').",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "How does currentColor work in CSS?",
+    answer: "'currentColor' is a built-in CSS keyword that represents the computed value of the element's active 'color' property. It is commonly used on borders, SVG fills, or box-shadows to inherit text color automatically.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the difference between Hex, RGB(A), HSL(A), and OKLCH color notations?",
+    answer: "- Hex (#ff0000): 6/8-character hexadecimal representation of Red/Green/Blue.\n- RGB (rgb(255, 0, 0)): Red, Green, Blue channel intensity (0-255).\n- HSL (hsl(0, 100%, 50%)): Hue (0-360 deg), Saturation (%), Lightness (%).\n- OKLCH (oklch(0.6 0.25 25)): Lightness (0-1), Chroma (saturation), Hue angle.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What are svh and lvh viewport units?",
+    answer: "- svh (Small Viewport Height): Height when mobile browser UI address bars are fully EXPANDED.\n- lvh (Large Viewport Height): Height when mobile browser UI address bars are fully COLLAPSED/HIDDEN.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "How do percentage (%) widths work on child elements vs parent elements?",
+    answer: "Percentage widths are calculated relative to the containing block's content box width. For padding/margin percentages, top/bottom percentages are also calculated relative to the parent's WIDTH, not height.",
+    difficulty: "Intermediate" as const,
+  },
+];

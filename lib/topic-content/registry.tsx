@@ -30,6 +30,22 @@ import AnimationsTransitionsTopic from "@/lib/topic-content/css-animations-trans
 import CssFunctionsTopic from "@/lib/topic-content/css-functions";
 import TailwindCssBasicsTopic from "@/lib/topic-content/tailwind-css-basics";
 
+// Phase 03 (JavaScript) Imports
+import VariablesDataTypesTopic from "@/lib/topic-content/variables-data-types";
+import OperatorsExpressionsTopic from "@/lib/topic-content/operators-expressions";
+import ControlFlowTopic from "@/lib/topic-content/control-flow";
+import FunctionsTopic from "@/lib/topic-content/functions";
+import ScopeClosuresTopic from "@/lib/topic-content/scope-closures";
+import DomManipulationTopic from "@/lib/topic-content/dom-manipulation";
+import EventHandlingTopic from "@/lib/topic-content/event-handling";
+import ArraysArrayMethodsTopic from "@/lib/topic-content/arrays-array-methods";
+import ObjectsDestructuringTopic from "@/lib/topic-content/objects-destructuring";
+import ES6FeaturesTopic from "@/lib/topic-content/es6-features";
+import ErrorHandlingTopic from "@/lib/topic-content/error-handling";
+import PromisesAsyncAwaitTopic from "@/lib/topic-content/promises-async-await";
+import FetchApiRestApisTopic from "@/lib/topic-content/fetch-api-rest-apis";
+import WebStorageBrowserApisTopic from "@/lib/topic-content/web-storage-browser-apis";
+
 export const TOPIC_CONTENT: Record<string, ComponentType> = {
   "how-the-internet-works": HowTheInternetWorks,
   "terminal-command-line-basics": TerminalCommandLineBasics,
@@ -61,6 +77,22 @@ export const TOPIC_CONTENT: Record<string, ComponentType> = {
   "css-animations-transitions": AnimationsTransitionsTopic,
   "css-functions": CssFunctionsTopic,
   "tailwind-css-basics": TailwindCssBasicsTopic,
+
+  // Phase 03 (JavaScript) Topics
+  "variables-data-types": VariablesDataTypesTopic,
+  "operators-expressions": OperatorsExpressionsTopic,
+  "control-flow": ControlFlowTopic,
+  "functions": FunctionsTopic,
+  "scope-closures": ScopeClosuresTopic,
+  "dom-manipulation": DomManipulationTopic,
+  "event-handling": EventHandlingTopic,
+  "arrays-array-methods": ArraysArrayMethodsTopic,
+  "objects-destructuring": ObjectsDestructuringTopic,
+  "es6-features": ES6FeaturesTopic,
+  "error-handling": ErrorHandlingTopic,
+  "promises-async-await": PromisesAsyncAwaitTopic,
+  "fetch-api-rest-apis": FetchApiRestApisTopic,
+  "web-storage-browser-apis": WebStorageBrowserApisTopic,
 };
 
 export function getTopicContent(slug: string): ComponentType | undefined {

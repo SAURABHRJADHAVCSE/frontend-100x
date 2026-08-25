@@ -2,6 +2,7 @@ import { CodeBlock } from "@/components/topic/code-block";
 import { SemanticLayoutDiagram } from "@/components/topic/diagrams";
 import { SemanticLandmarksPlayground } from "@/components/topic/phase1-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
+import { InterviewQuestions } from "@/components/topic/interview-questions";
 
 export default function SemanticElements() {
   return (
@@ -139,6 +140,61 @@ export default function SemanticElements() {
         </li>
         <li>Write a short blog post layout using nested article/section correctly, following the rule above.</li>
       </OL>
+
+      <InterviewQuestions questions={SEMANTIC_QUESTIONS} />
     </div>
   );
 }
+
+const SEMANTIC_QUESTIONS = [
+  {
+    question: "What is Semantic HTML and why is it important?",
+    answer: "Semantic HTML means using HTML elements according to their intended meaning rather than purely for visual presentation (e.g. using <header>, <article>, <button> instead of <div>). Semantic HTML improves accessibility for screen readers, enhances SEO indexing by search engine crawlers, and makes code significantly easier to maintain.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the difference between <section> and <article>?",
+    answer: "- <article>: Represents a self-contained, independent piece of content that could be distributed or reused anywhere on its own (e.g., a blog post, news story, product card, user comment).\n- <section>: Represents a generic thematic grouping of content, typically with a heading (e.g., a chapter, features list, or contact section within a page).",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "When should you use <aside>?",
+    answer: "The <aside> element is used for content that is tangentially related to the main content surrounding it, such as sidebars, callout boxes, related article links, author bios, or advertising blocks.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "Why should you use a real <button> instead of <div onclick=\"...\">?",
+    answer: "Native <button> elements automatically support keyboard focus (Tab navigation), respond to both Enter and Space keys, expose correct ARIA roles to screen readers, and support disabled states. A <div onclick> requires adding manual JS key listeners, tabindex='0', and role='button' just to recreate native functionality.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What are HTML Landmark elements and how do they benefit screen readers?",
+    answer: "Landmark elements (such as <header>, <nav>, <main>, <aside>, and <footer>) define major functional regions of a web page. Screen reader users can use shortcut keys to jump directly between landmarks, skipping repetitive navigation links.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is the First Rule of ARIA?",
+    answer: "The First Rule of ARIA states: 'If you can use a native HTML element or attribute with the semantics and behavior you require already built-in, then do so instead of re-purposing an element and adding ARIA roles, states or properties to make it accessible.'",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is the difference between <b> vs <strong> and <i> vs <em>?",
+    answer: "- <b> & <i> are stylistic/presentational (bold and italic without extra importance).\n- <strong> indicates strong urgency, seriousness, or importance (screen readers emphasize it).\n- <em> indicates stress emphasis that changes the spoken meaning of a sentence.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "How does semantic HTML impact SEO?",
+    answer: "Search engine web crawlers use semantic HTML tags to understand page structure and rank content. Correct heading hierarchies (<h1> to <h6>), <article>, <main>, and <nav> tags clearly communicate topic relevance, boosting SEO scores.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is the <figure> and <figcaption> pair used for?",
+    answer: "<figure> encapsulates self-contained visual or code content (photos, diagrams, code listings), and <figcaption> provides an explicit semantic caption tied directly to that parent figure element.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "Can a web page have multiple <main> elements?",
+    answer: "A document can only have ONE visible <main> element at a time. Multiple <main> tags are allowed only if all others have the 'hidden' attribute applied (e.g. in single-page app view switching).",
+    difficulty: "Advanced" as const,
+  },
+];

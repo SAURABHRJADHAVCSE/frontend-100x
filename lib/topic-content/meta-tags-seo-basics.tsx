@@ -2,6 +2,7 @@ import { CodeBlock } from "@/components/topic/code-block";
 import { SearchResultAnatomyDiagram } from "@/components/topic/diagrams";
 import { SeoMetaPreviewer } from "@/components/topic/phase1-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
+import { InterviewQuestions } from "@/components/topic/interview-questions";
 
 export default function MetaTagsSeoBasics() {
   return (
@@ -116,6 +117,61 @@ export default function MetaTagsSeoBasics() {
           solves.
         </li>
       </OL>
+
+      <InterviewQuestions questions={SEO_QUESTIONS} />
     </div>
   );
 }
+
+const SEO_QUESTIONS = [
+  {
+    question: "What is Meta Description and what is its optimal character length?",
+    answer: "A meta description tag ('<meta name=\"description\" content=\"...\">') provides a concise 150-160 character summary of a webpage. Search engines display it below the title tag in Search Engine Results Pages (SERPs) to improve Click-Through Rate (CTR).",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What are Open Graph (og:) meta tags and why are they used?",
+    answer: "Open Graph meta tags (e.g. og:title, og:image, og:description) are a protocol introduced by Facebook. They control how a webpage is rendered as a rich link preview card when shared on social media platforms (LinkedIn, Twitter/X, WhatsApp, Slack).",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is a canonical URL tag and what problem does it solve?",
+    answer: "A canonical link tag ('<link rel=\"canonical\" href=\"https://example.com/page\">') tells search engines which URL is the single master/authoritative copy of a webpage. It prevents SEO duplicate content penalties when the same page is accessible via multiple parameters (e.g. ?ref=twitter or ?sort=asc).",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is the difference between robots meta tag values index/noindex and follow/nofollow?",
+    answer: "- index / noindex: Controls whether search engines are allowed to store and display the page in search results.\n- follow / nofollow: Controls whether crawlers should follow link URLs found on that page to index secondary pages.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is structured data (JSON-LD) and how does it affect Search Results?",
+    answer: "JSON-LD (JavaScript Object Notation for Linked Data) is a standardized schema.org format embedded in a <script type=\"application/ld+json\"> tag. It gives search engines explicit structural metadata about products, reviews, recipes, or events, enabling 'Rich Snippets' (star ratings, prices, event dates) in search results.",
+    difficulty: "Advanced" as const,
+  },
+  {
+    question: "What is robots.txt vs sitemap.xml?",
+    answer: "- robots.txt: A plain text file at the root of a domain instructing search engine crawlers which paths they are allowed or forbidden to crawl.\n- sitemap.xml: An XML file listing all public URLs on a website along with modification dates, helping search engine spiders discover all pages efficiently.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "How do Core Web Vitals (LCP, INP, CLS) impact SEO rankings?",
+    answer: "Google incorporates Core Web Vitals into its official search ranking algorithm. Pages with fast Largest Contentful Paint (<2.5s), low Interaction to Next Paint (<200ms), and minimal Cumulative Layout Shift (<0.1) are rewarded with higher search rankings over slow competitors.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "What is the difference between Client-Side Rendering (CSR) and Server-Side Rendering (SSR) for SEO?",
+    answer: "In CSR (plain React/SPA), initial HTML is empty and populated via JS, which can delay or hinder search engine indexing. In SSR (Next.js), full HTML content is rendered on the server before sending to the browser, ensuring web crawlers index content instantly.",
+    difficulty: "Advanced" as const,
+  },
+  {
+    question: "What is Twitter Cards meta data?",
+    answer: "Twitter Cards meta tags (e.g. <meta name=\"twitter:card\" content=\"summary_large_image\">) specify custom rich media card preview formats specifically optimized for sharing on Twitter/X.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "Why should every page have a unique <title> tag?",
+    answer: "The <title> tag is the single most important on-page SEO element. It defines the clickable blue title link in search engine results and browser tab names, directly driving search relevancy and user clicks.",
+    difficulty: "Basic" as const,
+  },
+];

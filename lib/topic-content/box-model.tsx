@@ -1,6 +1,7 @@
 import { CodeBlock } from "@/components/topic/code-block";
 import { BoxModelPlayground } from "@/components/topic/css-playgrounds";
 import { Callout, Code, H2, H3, Highlight, OL, P, UL } from "@/components/topic/prose";
+import { InterviewQuestions } from "@/components/topic/interview-questions";
 
 export default function BoxModelTopic() {
   return (
@@ -79,6 +80,61 @@ export default function BoxModelTopic() {
         <li>Use modern gap properties in Flexbox and Grid instead of relying heavily on collapsing vertical margins.</li>
         <li>Use <Code>outline</Code> for accessible focus rings so layouts remain stable.</li>
       </OL>
+
+      <InterviewQuestions questions={BOX_MODEL_QUESTIONS} />
     </div>
   );
 }
+
+const BOX_MODEL_QUESTIONS = [
+  {
+    question: "What are the 4 main layers of the CSS Box Model?",
+    answer: "Concentric areas from inside out:\n1. Content: Area containing text, images, or nested elements (width x height).\n2. Padding: Transparent area clearing space around content, inside the border.\n3. Border: Border line surrounding the padding and content.\n4. Margin: Transparent area outside the border pushing adjacent elements away.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is the difference between box-sizing: content-box and box-sizing: border-box?",
+    answer: "- content-box (default): Declared width/height applies ONLY to content. Total on-screen width = width + padding-left + padding-right + border-left + border-right.\n- border-box: Declared width/height INCLUDES content, padding, and border. Total on-screen width equals declared width.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is Margin Collapsing and when does it occur?",
+    answer: "Margin collapsing occurs when the top and bottom margins of adjacent block elements combine into a single margin equal to the largest individual margin value, rather than adding together. It occurs between adjacent vertical siblings and unpadded parent-child elements.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "How does outline differ from border in CSS?",
+    answer: "A 'border' occupies space inside the element box model and affects layout positioning. An 'outline' is drawn outside the element border and DOES NOT take up layout space or trigger layout reflow (making it ideal for :focus-visible indicators).",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "How do inline elements handle padding and margin differently than block elements?",
+    answer: "Inline elements (like <span> or <a>) accept horizontal padding/margin (left/right). However, vertical padding/margin (top/bottom) DOES NOT push surrounding line-height or block elements away.",
+    difficulty: "Intermediate" as const,
+  },
+  {
+    question: "Why is box-sizing: border-box recommended as a universal CSS reset?",
+    answer: "Applying '*, *::before, *::after { box-sizing: border-box; }' ensures element sizing is predictable. Setting a card to width: 300px with 20px padding will keep its visible width at exactly 300px, preventing layout breaks.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "How can you prevent margin collapsing between a parent and its first child?",
+    answer: "Margin collapsing can be prevented by:\n1. Adding a non-zero padding-top or border-top to the parent.\n2. Giving the parent 'display: flex' or 'display: grid'.\n3. Setting 'overflow: hidden' or creating a Block Formatting Context (BFC) on the parent.",
+    difficulty: "Advanced" as const,
+  },
+  {
+    question: "What is the CSS box-shadow property and does it affect the Box Model layout dimensions?",
+    answer: "'box-shadow' applies visual shadow effects around an element frame. Like outline, box-shadow DOES NOT take up space in the layout box model and does not affect surrounding element placement.",
+    difficulty: "Basic" as const,
+  },
+  {
+    question: "What is a Block Formatting Context (BFC) and how does it relate to the Box Model?",
+    answer: "A BFC is a mini independent layout region in the browser. Floating elements inside a BFC are contained, external vertical margins do not collapse across BFC boundaries, and BFC containers do not overlap floats.",
+    difficulty: "Advanced" as const,
+  },
+  {
+    question: "What is logical property syntax for margin and padding in modern CSS?",
+    answer: "Logical properties replace physical directional properties (top, bottom, left, right) with writing-mode aware properties: 'margin-block-start' (top), 'margin-block-end' (bottom), 'margin-inline-start' (left/right start), and 'margin-inline-end', supporting RTL languages.",
+    difficulty: "Intermediate" as const,
+  },
+];
